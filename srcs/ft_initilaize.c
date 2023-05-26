@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_initilaize.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/26 16:59:02 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/26 17:22:49 by mkarakul         ###   ########.fr       */
+/*   Created: 2023/05/26 17:02:10 by mkarakul          #+#    #+#             */
+/*   Updated: 2023/05/26 17:24:41 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	main(int ac, char **av, char **envp)
-{
-	t_global	*g_data;
+extern t_global *g_data;
 
-	g_data = malloc(sizeof(t_global));
-	g_data->envp = envp;
-	ft_initilaize();
+void	ft_initilaize(void)
+{
+	g_data->fd = 5;
+	printf("%d", g_data->fd);
 }
