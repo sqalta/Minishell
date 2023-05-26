@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:59:02 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/26 19:33:36 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/05/26 21:03:38 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,9 @@ void	start(void)
 {
 	t_arg	*temp;
 
-	temp = NULL;
 	while (1)
 	{
-		printf("\033[31m%s@\033[0m\033", get_username(g_data.envp));
-		g_data.line = readline("[31mminishell-$> \033[0m");
+		g_data.line = readline("minishell-$ ");
 		ft_parse();
 		temp = g_data.list;
 		if (!temp)

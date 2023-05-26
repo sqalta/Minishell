@@ -6,13 +6,13 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:28:23 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/26 19:31:12 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/05/26 21:40:44 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	check_way(void)
+void	check_way(void)
 {
 	t_arg	*temp;
 	int		status;
@@ -20,14 +20,16 @@ int	check_way(void)
 	temp = g_data.list;
 	ft_command_line();
 	if (builtin() != -1)
-		return (0);
+		return ;
 	status = fork();
-	if (temp && status == 0)
+	if (status == 0)
 	{
-		if (temp->type == WORD)
+		if (g_data.redirection[0] != NULL)
+			exec_redir(status);
+		else if (g_data.command[0] != NULL)
 			exec_shell(status);
 		exit(0);
-		return (0);
+		return ;
 	}
 	else
 		wait(&status);

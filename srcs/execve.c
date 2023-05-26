@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:25:37 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/26 19:27:51 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/05/26 21:16:24 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	control_bin2(t_arg *temp, char *path, int j, char *dir)
 		tmp = ft_strjoin(tmp, temp->arg);
 		if (access(tmp, F_OK) == 0)
 		{
-			temp->arg = tmp;
+			g_data.command[0] = tmp;
 			free(dir);
 			return (1);
 		}
@@ -50,7 +50,7 @@ int	control_bin(void)
 
 	temp = g_data.list;
 	i = 0;
-	if (ft_strncmp(temp->arg, "./", 2) == 0)
+	if (ft_strncmp(g_data.command[0], "./", 2) == 0)
 		return (1);
 	while (g_data.envp[i])
 	{
@@ -75,7 +75,7 @@ void	ft_execve(void)
 
 	temp = g_data.list;
 	if (control_bin())
-		execve(temp->arg, g_data.command, g_data.envp);
+		execve(g_data.command[0], g_data.command, g_data.envp);
 	else
 	{
 		perror("minishell");

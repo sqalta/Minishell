@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:30:35 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/26 19:33:09 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/05/26 20:17:26 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,13 @@
 
 typedef struct s_data
 {
+	char	**command;
+	char	**redirection;
 	char	**envp;
 	char	**ex_path;
 	int		fd;
-	char	**prompt;
-	char	**cmd;
-	char	**redirection;
 	t_arg	*list;
 	char	*line;
-	char	**command;
 }	t_data;
 
 t_data	g_data;
@@ -58,9 +56,12 @@ int		builtin(void);
 
 int		ft_strcmp(char *s1, char *s2);
 
-int		check_way(void);
+void	check_way(void);
 void	ft_execve(void);
 void	exec_shell(int status);
 void	ft_command_line(void);
+
+void	exec_redir(int status);
+void	exec_pipe(int status);
 
 #endif

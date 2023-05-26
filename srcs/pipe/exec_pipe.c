@@ -1,27 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cd.c                                            :+:      :+:    :+:   */
+/*   exec_pipe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/04 19:04:33 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/26 21:36:10 by mkarakul         ###   ########.fr       */
+/*   Created: 2023/05/26 20:12:34 by mkarakul          #+#    #+#             */
+/*   Updated: 2023/05/26 20:16:51 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	ft_cd(void)
+void	exec_pipe(int status)
 {
 	t_arg	*temp;
+	int		fd[2];
+	int		pid;
 
 	temp = g_data.list;
-	if (temp->next && ft_strcmp(temp->next->arg, "~") == 0)
+	pipe(fd);
+	pid = fork();
+	if (pid == 0)
 	{
-		if (chdir(temp->next->arg))
-			perror("minishell ");
+		dup2(fd[1], 1);
+		close(fd[0]);
+		exec_shell(status);
+		exit(0);
 	}
-	else if (chdir(getenv("HOME")))
-		perror("minishell ");
+	else
+	{
+		wait(&status);
+		dup2(fd[0], 0);
+		close(fd[1]);
+		exec_shell(status);
+	}
 }
