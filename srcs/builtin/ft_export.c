@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
+/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 18:41:07 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/12 21:54:08 by mustafakara      ###   ########.fr       */
+/*   Updated: 2023/05/26 19:16:59 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	*ft_export_path(t_env *data)
+void	*ft_export_path(void)
 {
 	int		i;
 	int		j;
@@ -20,12 +20,12 @@ void	*ft_export_path(t_env *data)
 
 	i = 0;
 	j = 0;
-	while (data->ex_path[i])
+	while (g_data.ex_path[i])
 	{
 		j = 0;
-		while (data->ex_path[i][j] != '=')
+		while (g_data.ex_path[i][j] != '=')
 			j++;
-		tmp = ft_substr(data->ex_path[i], 0, j);
+		tmp = ft_substr(g_data.ex_path[i], 0, j);
 		ft_putstr_fd("declare -x ", 1);
 		ft_putstr_fd(tmp, 1);
 		ft_putstr_fd("\n", 1);
@@ -35,14 +35,14 @@ void	*ft_export_path(t_env *data)
 	return (NULL);
 }
 
-void	ft_export(t_env *data)
+void	ft_export(void)
 {
 	t_arg	*temp;
 
-	temp = data->t_arg;
+	temp = g_data.list;
 	temp = temp->next;
 	if (!temp || ft_strcmp(temp->arg, "-p") == 1)
-		ft_export_path(data);
+		ft_export_path();
 	else
-		data->ex_path = ft_addenv(data);
+		g_data.ex_path = ft_addenv();
 }

@@ -3,37 +3,64 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
+/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:30:35 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/26 18:09:01 by mustafakara      ###   ########.fr       */
+/*   Updated: 2023/05/26 19:33:09 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
-# include "/Users/mustafakarakulak/Desktop/project-beta/libft/libft.h"
+# include "parse/parse.h"
+# include "libft/libft.h"
 # include <stdio.h>
 # include <stdlib.h>
-# include <string.h>
-# include <fcntl.h>
+# include <signal.h>
 # include <unistd.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include <signal.h>
-# include <stdbool.h>
+# include <fcntl.h>
+# include <dirent.h>
 
 typedef struct s_data
 {
 	char	**envp;
+	char	**ex_path;
 	int		fd;
 	char	**prompt;
 	char	**cmd;
 	char	**redirection;
+	t_arg	*list;
+	char	*line;
+	char	**command;
 }	t_data;
 
 t_data	g_data;
 
 void	ft_initilaize(void);
+int		ft_parse(void);
+void	start(void);
+
+void	ft_pwd(void);
+char	**ft_addenv(void);
+void	*ft_delenv(int i, int env_c);
+void	*ft_getenv(char *name, char **args);
+void	ft_env(void);
+void	parsing_line(void);
+void	all_free(void);
+
+void	ft_echo(void);
+void	ft_cd(void);
+void	ft_export(void);
+void	ft_unset(void);
+int		builtin(void);
+
+int		ft_strcmp(char *s1, char *s2);
+
+int		check_way(void);
+void	ft_execve(void);
+void	exec_shell(int status);
+void	ft_command_line(void);
 
 #endif

@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
+/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 18:40:14 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/12 21:50:30 by mustafakara      ###   ########.fr       */
+/*   Updated: 2023/05/26 19:18:05 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	ft_env_counter(t_env *data)
+int	ft_env_counter(void)
 {
 	int	i;
 
 	i = 0;
-	while (data->envp[i])
+	while (g_data.envp[i])
 		i++;
 	return (i);
 }
@@ -49,23 +49,23 @@ int	ft_path_founder(char **envp, char *name, int len)
 	return (-1);
 }
 
-void	ft_unset(t_env *data)
+void	ft_unset(void)
 {
 	int		i;
 	int		env_c;
 	t_arg	*temp;
 
-	temp = data->t_arg;
+	temp = g_data.list;
 	if (!temp->next)
 		return ;
-	env_c = ft_env_counter(data);
+	env_c = ft_env_counter();
 	temp = temp->next;
 	while (temp)
 	{
-		i = ft_path_founder(data->envp, temp->arg,
+		i = ft_path_founder(g_data.envp, temp->arg,
 				ft_strlen(temp->arg));
 		if (i != -1)
-			ft_delenv(data, i, env_c);
+			ft_delenv(i, env_c);
 		temp = temp->next;
 	}
 }
