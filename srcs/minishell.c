@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:59:02 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/26 17:22:49 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/05/26 18:06:21 by mustafakara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../minishell.h"
+
+extern t_data g_data;
 
 int	main(int ac, char **av, char **envp)
 {
-	t_global	*g_data;
+	t_data	g_data;
 
-	g_data = malloc(sizeof(t_global));
-	g_data->envp = envp;
+	g_data.envp = envp;
 	ft_initilaize();
 }

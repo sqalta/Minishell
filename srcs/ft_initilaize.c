@@ -3,19 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_initilaize.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:02:10 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/26 17:24:41 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/05/26 18:06:39 by mustafakara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
-
-extern t_global *g_data;
+#include "../minishell.h"
 
 void	ft_initilaize(void)
 {
-	g_data->fd = 5;
-	printf("%d", g_data->fd);
+	g_data.fd = 6;
+	printf("%d", g_data.fd);
 }
