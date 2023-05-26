@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:25:37 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/26 21:16:24 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/05/27 02:39:44 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	control_bin2(t_arg *temp, char *path, int j, char *dir)
 			j++;
 		dir = ft_substr(path, i, j - i);
 		tmp = ft_strjoin(dir, "/");
-		tmp = ft_strjoin(tmp, temp->arg);
+		tmp = ft_strjoin(tmp, g_data.command[0]);
 		if (access(tmp, F_OK) == 0)
 		{
 			g_data.command[0] = tmp;
