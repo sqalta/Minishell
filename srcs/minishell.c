@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:59:02 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/27 02:35:03 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/05/27 14:23:02 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,6 @@ void	start(void)
 int	main(int ac, char **av, char **envp)
 {
 	g_data.envp = envp;
+	g_data.ex_path = envp;
 	start();
 }

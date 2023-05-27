@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 19:04:59 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/26 19:15:54 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/05/27 03:07:40 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,23 @@ int	ft_echo_param_checker(char *str)
 
 void	ft_echo(void)
 {
-	t_arg	*temp;
+	int	i;
 
-	temp = g_data.list->next;
-	if (!temp)
+	i = 0;
+	if (g_data.command[i] == NULL)
 	{
 		ft_putstr_fd("\n", 1);
 		return ;
 	}
-	if (ft_echo_param_checker(temp->arg))
-		temp = temp->next;
-	while (temp)
+	if (ft_echo_param_checker(g_data.command[1]) == 1)
+		i += 2;
+	while (g_data.command[i])
 	{
-		ft_putstr_fd(temp->arg, 1);
-		if (temp->next)
+		ft_putstr_fd(g_data.command[i], 1);
+		if (g_data.command[i + 1] != NULL)
 			ft_putstr_fd(" ", 1);
-		temp = temp->next;
+		i++;
 	}
-	if (ft_echo_param_checker(g_data.list->next->arg) == 0)
+	if (ft_echo_param_checker(g_data.command[1]) == 1)
 		ft_putstr_fd("\n", 1);
 }

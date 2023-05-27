@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 21:05:32 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/26 19:14:44 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/05/27 02:57:43 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	**ft_addenv(void)
 	temp = g_data.list;
 	temp = temp->next;
 	i = 0;
-	tmp = malloc(sizeof(char **) * 10000000);
+	tmp = malloc(sizeof(char **) * 100000);
 	while (g_data.ex_path[i])
 	{
 		tmp[i] = g_data.ex_path[i];

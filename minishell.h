@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:30:35 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/27 02:44:30 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/05/27 14:52:00 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,36 +32,39 @@ typedef struct s_data
 	int		fd;
 	t_arg	*list;
 	char	*line;
+
+	pid_t	pipe;
+	int		pipe_c;
+	int		*p_fd;
 }	t_data;
 
 t_data	g_data;
 
-void	ft_initilaize(void);
-int		ft_parse(void);
 void	start(void);
+int		ft_parse(void);
 
-void	ft_pwd(void);
+void	all_free(void);
+int		ft_strcmp(char *s1, char *s2);
+
 char	**ft_addenv(void);
 void	*ft_delenv(int i, int env_c);
 void	*ft_getenv(char *name, char **args);
-void	ft_env(void);
-void	parsing_line(void);
-void	all_free(void);
 
-void	ft_echo(void);
 void	ft_cd(void);
-void	ft_export(void);
+void	ft_pwd(void);
+void	ft_env(void);
+void	ft_echo(void);
 void	ft_unset(void);
+void	ft_export(void);
+
 int		builtin(void);
 
-int		ft_strcmp(char *s1, char *s2);
-
 void	check_way(void);
-void	ft_execve(void);
-void	exec_shell(int status);
 void	ft_command_line(void);
 
-void	exec_redir(int status);
+void	ft_execve(void);
 void	exec_pipe(int status);
+void	exec_shell(int status);
+void	exec_redir(int status);
 
 #endif
