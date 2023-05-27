@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:30:35 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/27 18:57:30 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/05/28 01:59:55 by mustafakara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ typedef struct s_data
 	t_arg	*temp_list;
 	char	*line;
 	int		status;
-	pid_t	pipe;
+	int		pipe;
 	int		pipe_c;
 	int		p_fd[2];
+	int		*output_fd;
+	int		*input_fd;
 }	t_data;
 
 t_data	g_data;
@@ -69,5 +71,7 @@ void	exec_shell(int status);
 void	exec_redir(int status);
 
 void	check_way_loop(void);
+
+void	pipe_counter(void);
 
 #endif

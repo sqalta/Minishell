@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.c                                          :+:      :+:    :+:   */
+/*   ft_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/25 18:34:03 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/28 01:37:34 by mustafakara      ###   ########.fr       */
+/*   Created: 2023/05/28 01:40:23 by mustafakara       #+#    #+#             */
+/*   Updated: 2023/05/28 01:43:36 by mustafakara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	builtin(void)
+void    ft_pipe_init(void)
 {
-	if (g_data.command[0] == NULL)
-		return (-1);
-	if (ft_strcmp(g_data.command[0], "cd"))
-		ft_cd();
-	else if (ft_strcmp(g_data.command[0], "pwd"))
-		ft_pwd();
-	else if (ft_strcmp(g_data.command[0], "export"))
-		ft_export();
-	else if (ft_strcmp(g_data.command[0], "unset"))
-		ft_unset();
-	else if (ft_strcmp(g_data.command[0], "env"))
-		ft_env();
-	else
-		return (-1);
-	return (0);
+    g_data.output_fd = malloc(sizeof(int) * g_data.pipe_c);
+    g_data.input_fd = malloc(sizeof(int) * g_data.pipe_c);
+}
+
+void	pipe_counter(void)
+{
+	t_arg	*temp;
+	int		i;
+
+	temp = g_data.list;
+	i = 0;
+	while (temp)
+	{
+		if (temp->type == PIPE)
+			i++;
+		temp = temp->next;
+	}
+	g_data.pipe_c = i;
+    if (g_data.pipe_c > 0)
+        ft_pipe_init();
 }

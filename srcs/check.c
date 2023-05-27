@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:28:23 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/27 18:57:14 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/05/28 02:04:49 by mustafakara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ void	check_way(void)
 
 void	check_way_loop(void)
 {
-	ft_command_line();
 	while (g_data.list != NULL)
 	{
-		if (g_data.pipe_c > 0)
+		ft_command_line();
+		if (g_data.pipe_c > 0 && g_data.list)
 			exec_pipe();
 		else
 			check_way();
