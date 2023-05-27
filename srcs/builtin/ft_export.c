@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 18:41:07 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/27 02:57:31 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/05/27 16:48:45 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,7 @@ void	*ft_export_path(void)
 
 void	ft_export(void)
 {
-	t_arg	*temp;
-
-	temp = g_data.list;
-	temp = temp->next;
-	if (!temp || ft_strcmp(temp->arg, "-p") == 1)
+	if (!g_data.command[1] || ft_strcmp(g_data.command[1], "-p") == 1)
 		ft_export_path();
 	else
 		g_data.ex_path = ft_addenv();

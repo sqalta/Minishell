@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:28:23 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/27 15:07:21 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/05/27 15:38:04 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,8 @@ void	check_way(void)
 			exec_shell(status);
 		if (ft_strcmp(g_data.command[0], "echo"))
 			ft_echo();
-		else
-			printf("minishell: syntax error near unexpected token %s",
-				g_data.command[0]);
+		if (temp->type == PIPE)
+			temp = temp->next;
 		exit(0);
 		return ;
 	}

@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 19:04:33 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/26 21:36:10 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/05/27 15:41:33 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,9 @@
 
 void	ft_cd(void)
 {
-	t_arg	*temp;
-
-	temp = g_data.list;
-	if (temp->next && ft_strcmp(temp->next->arg, "~") == 0)
+	if (g_data.command[1] && ft_strcmp(g_data.command[1], "~") == 0)
 	{
-		if (chdir(temp->next->arg))
+		if (chdir(g_data.command[1]))
 			perror("minishell ");
 	}
 	else if (chdir(getenv("HOME")))
