@@ -6,13 +6,29 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:59:02 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/27 15:22:32 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/05/27 18:54:26 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 extern t_data g_data;
+
+void	pipe_counter(void)
+{
+	t_arg	*temp;
+	int		i;
+
+	temp = g_data.list;
+	i = 0;
+	while (temp)
+	{
+		if (temp->type == PIPE)
+			i++;
+		temp = temp->next;
+	}
+	g_data.pipe_c = i;
+}
 
 char	*get_username(char **envp)
 {
@@ -57,7 +73,8 @@ void	start(void)
 			write(1, "exit\n", 5);
 			exit(0);
 		}
-		check_way();
+		pipe_counter();
+		check_way_loop();
 		add_history(g_data.line);
 	}
 }

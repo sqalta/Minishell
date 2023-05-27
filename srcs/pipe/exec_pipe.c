@@ -6,31 +6,33 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 20:12:34 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/27 14:39:07 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/05/27 19:09:52 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	exec_pipe(int status)
+void	exec_pipe(void)
 {
 	t_arg	*temp;
 
 	temp = g_data.list;
 	pipe(g_data.p_fd);
 	g_data.pipe = fork();
-	if (g_data.pipe == 0)
+	if (1 == 1)
 	{
-		dup2(g_data.p_fd[1], 1);
+		dup2(1, g_data.p_fd[1]);
+		exec_shell(g_data.pipe);
 		close(g_data.p_fd[0]);
-		exec_shell(status);
-		exit(0);
 	}
 	else
 	{
-		wait(&status);
-		dup2(g_data.p_fd[0], 0);
-		close(g_data.p_fd[1]);
-		exec_shell(status);
+		printf("AAAAAA\n");
+		exit(0);
+		//wait(&g_data.pipe);
+		//exit (1);
+		//dup2(0, g_data.p_fd[1]);
+		//close(g_data.p_fd[1]);
+		//exec_shell(g_data.pipe);
 	}
 }

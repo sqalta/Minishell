@@ -6,7 +6,7 @@
 #    By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/26 18:58:37 by mkarakul          #+#    #+#              #
-#    Updated: 2023/05/26 20:14:02 by mkarakul         ###   ########.fr        #
+#    Updated: 2023/05/27 17:52:15 by mkarakul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRC = libft/libft.a srcs/utils/ft_strcmp.c srcs/minishell.c \
 	srcs/builtin/ft_unset.c srcs/execve.c srcs/check.c srcs/command_line.c \
 	srcs/redir/exec_redir.c srcs/pipe/exec_pipe.c
 
-GCC = gcc
+GCC = gcc -g
 
 FLAG = -lreadline -o $(NAME)
 

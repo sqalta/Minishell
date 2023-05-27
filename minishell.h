@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:30:35 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/27 14:52:00 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/05/27 18:57:30 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,12 @@ typedef struct s_data
 	char	**ex_path;
 	int		fd;
 	t_arg	*list;
+	t_arg	*temp_list;
 	char	*line;
-
+	int		status;
 	pid_t	pipe;
 	int		pipe_c;
-	int		*p_fd;
+	int		p_fd[2];
 }	t_data;
 
 t_data	g_data;
@@ -63,8 +64,10 @@ void	check_way(void);
 void	ft_command_line(void);
 
 void	ft_execve(void);
-void	exec_pipe(int status);
+void	exec_pipe(void);
 void	exec_shell(int status);
 void	exec_redir(int status);
+
+void	check_way_loop(void);
 
 #endif

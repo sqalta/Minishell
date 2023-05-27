@@ -5,7 +5,7 @@
 #include <unistd.h>
 #include "../libft/libft.h"
 
-enum character {
+enum	character {
 	WORD,
     INPUT_RDR,
     OUTPUT_RDR,
@@ -22,9 +22,9 @@ enum loc_quot {
 };
 
 typedef struct s_arg {
-    struct 			s_arg *next;
-    char			*arg;
-    enum character	type;
+	struct s_arg	*next;
+	char			*arg;
+	enum character	type;
 }					t_arg;
 
 

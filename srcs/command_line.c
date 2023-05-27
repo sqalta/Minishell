@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:29:09 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/27 16:46:23 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/05/27 17:21:30 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ void	ft_command_line(void)
 	g_data.redirection = malloc(1000000);
 	while (temp && temp->type != PIPE)
 	{
-		if (temp->type == PIPE)
-			g_data.pipe_c++;
-		else if (temp->type == WORD)
+		if (temp->type == WORD)
 			g_data.command[i++] = ft_strdup(temp->arg);
 		else if (temp->type == OUTPUT_RDR || temp->type == INPUT_RDR)
 		{
@@ -37,7 +35,7 @@ void	ft_command_line(void)
 		}
 		temp = temp->next;
 	}
-	g_data.list = temp;
+	g_data.temp_list = temp;
 	g_data.command[i] = NULL;
 	g_data.redirection[j] = NULL;
 }
