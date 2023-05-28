@@ -6,7 +6,7 @@
 /*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 20:12:34 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/28 02:06:55 by mustafakara      ###   ########.fr       */
+/*   Updated: 2023/05/29 02:49:45 by mustafakara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,29 @@
 
 void	exec_pipe(void)
 {
-	t_arg	*temp;
+	int	count;
 
-	temp = g_data.list;
-	pipe(g_data.p_fd);
-	g_data.pipe = fork();
-	if (g_data.pipe == 0)
+	count = 0;
+	while (count < g_data.pipe_c)
 	{
-		//
+		g_data.pipe[count] = fork();
+		count++;
+	}
+	count = 0;
+	if (g_data.pipe[count] == 0)
+	{
+		while (count < g_data.pipe_c)
+		{
+			dup2(1, g_data.p_fd[1]);
+			ft_execve();
+			ft_command_line();
+			close(g_data.p_fd[1]);
+			count++;
+		}
 	}
 	else
-		wait(&g_data.pipe);
+	{
+		waitpid(g_data.pipe[count], &g_data.status, 0);
+		count++;
+	}
 }

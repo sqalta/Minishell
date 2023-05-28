@@ -6,7 +6,7 @@
 /*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:59:02 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/28 01:40:53 by mustafakara      ###   ########.fr       */
+/*   Updated: 2023/05/29 02:30:17 by mustafakara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,5 @@ int	main(int ac, char **av, char **envp)
 {
 	g_data.envp = envp;
 	g_data.ex_path = envp;
-	g_data.pipe_c = 0;
 	start();
 }
