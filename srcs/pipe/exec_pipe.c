@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
+/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 20:12:34 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/29 02:49:45 by mustafakara      ###   ########.fr       */
+/*   Updated: 2023/05/30 16:28:13 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	exec_pipe(void)
 	int	count;
 
 	count = 0;
-	while (count < g_data.pipe_c)
+	while (count <= g_data.pipe_c)
 	{
 		g_data.pipe[count] = fork();
 		count++;
@@ -27,16 +27,17 @@ void	exec_pipe(void)
 	{
 		while (count < g_data.pipe_c)
 		{
-			dup2(1, g_data.p_fd[1]);
-			ft_execve();
 			ft_command_line();
 			close(g_data.p_fd[1]);
-			count++;
+			dup2(g_data.p_fd[0], 0);
+			ft_execve();
+			close(g_data.p_fd[0]);
 		}
 	}
 	else
 	{
+		close(g_data.p_fd[0]);
+		dup2(1, g_data.p_fd[1]);
 		waitpid(g_data.pipe[count], &g_data.status, 0);
-		count++;
 	}
 }
