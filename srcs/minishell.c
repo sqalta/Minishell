@@ -3,35 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
+/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:59:02 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/29 02:30:17 by mustafakara      ###   ########.fr       */
+/*   Updated: 2023/06/01 17:42:13 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 extern t_data g_data;
-
-char	*get_username(char **envp)
-{
-	char	*username;
-	int		i;
-
-	username = NULL;
-	i = 0;
-	while (envp[i])
-	{
-		if (ft_strncmp(envp[i], "USER=", 5) == 0)
-		{
-			username = envp[i] + 5;
-			break ;
-		}
-		i++;
-	}
-	return (username);
-}
 
 void	exec_shell(int status)
 {
@@ -45,7 +26,7 @@ void	start(void)
 {
 	t_arg	*temp;
 
-	while (1)
+	while (g_data.exit_status == 0)
 	{
 		g_data.line = readline("minishell-$ ");
 		ft_parse();
@@ -57,8 +38,10 @@ void	start(void)
 			write(1, "exit\n", 5);
 			exit(0);
 		}
-		pipe_counter();
-		check_way_loop();
+		g_data.deneme = 0;
+		ft_heredoc_line();
+		if (initialize_pipe() == -1)
+			execute();
 		add_history(g_data.line);
 	}
 }
@@ -67,5 +50,6 @@ int	main(int ac, char **av, char **envp)
 {
 	g_data.envp = envp;
 	g_data.ex_path = envp;
+	g_data.exit_status = 0;
 	start();
 }

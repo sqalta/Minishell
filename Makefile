@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+         #
+#    By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/26 18:58:37 by mkarakul          #+#    #+#              #
-#    Updated: 2023/05/28 02:01:47 by mustafakara      ###   ########.fr        #
+#    Updated: 2023/06/01 17:38:09 by mkarakul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,9 @@ SRC = libft/libft.a srcs/utils/ft_strcmp.c srcs/minishell.c \
 	srcs/builtin/ft_cd.c srcs/builtin/ft_echo.c srcs/builtin/ft_export.c \
 	srcs/builtin/ft_unset.c srcs/execve.c srcs/check.c srcs/command_line.c \
 	srcs/redir/exec_redir.c srcs/pipe/exec_pipe.c srcs/pipe/ft_pipe.c \
+	srcs/free.c srcs/heredoc/exec_heredoc.c
 
-GCC = gcc -g
+GCC = gcc
 
 FLAG = -lreadline -o $(NAME)
 
@@ -34,6 +35,14 @@ all:
 
 clean:
 	rm -rf $(NAME)
+	rm -rf libft/libft.a
+
+fclean: clean all
+
+
+re:
+	$(clean)
+	$(all)
 
 git:
 	git add .

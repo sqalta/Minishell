@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
+/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:30:35 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/29 02:16:34 by mustafakara      ###   ########.fr       */
+/*   Updated: 2023/06/01 15:12:14 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_data
 {
 	char	**command;
 	char	**redirection;
+	char	**heredoc;
 	char	**envp;
 	char	**ex_path;
 	int		fd;
@@ -34,13 +35,16 @@ typedef struct s_data
 	t_arg	*temp_list;
 	char	*line;
 	int		status;
-
-	int		*pipe;
+	int		**all_pipe_fd;
+	int		*pipe_id;
 	int		pipe_c;
 	int		p_fd[2];
 	int		*output_fd;
 	int		*input_fd;
 	int		fd_c;
+	int		*exit_status;
+	int		deneme;
+	char	**deneme1;
 }	t_data;
 
 t_data	g_data;
@@ -72,8 +76,10 @@ void	exec_pipe(void);
 void	exec_shell(int status);
 void	exec_redir(int status);
 
-void	check_way_loop(void);
+void	execute(void);
 
-void	pipe_counter(void);
-
+void	exec_heredoc(void);
+int		initialize_pipe(void);
+void	ft_heredoc_line(void);
+int		pipe_counter(void);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
+/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:28:23 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/29 02:31:58 by mustafakara      ###   ########.fr       */
+/*   Updated: 2023/06/01 15:12:29 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,38 +17,29 @@ void	check_way(void)
 	t_arg	*temp;
 	int		status;
 
+	status = 0;
 	temp = g_data.list;
-	ft_command_line();
-	if (builtin() == 0)
-		return ;
-	status = fork();
-	if (status == 0)
-	{
-		if (g_data.redirection[0] != NULL)
-			exec_redir(status);
-		else if (g_data.command[0] != NULL)
-			exec_shell(status);
-		if (ft_strcmp(g_data.command[0], "echo"))
-			ft_echo();
-		if (!temp)
-			exit(0);
-	}
-	else
-		wait(&status);
+	if (g_data.heredoc[0] != NULL)
+		exec_heredoc();
+	if (g_data.redirection[0] != NULL)
+		exec_redir(status);
+	else if (g_data.command[0] != NULL)
+		ft_execve();
+	if (ft_strcmp(g_data.command[0], "echo"))
+		ft_echo();
 }
 
-void	check_way_loop(void)
+void	execute(void)
 {
-	while (g_data.list != NULL)
-	{
-		ft_command_line();
-		if (g_data.pipe_c > 0 && g_data.list)
-			exec_pipe();
-		else
-			check_way();
-		if (g_data.temp_list != NULL)
-			g_data.list = g_data.temp_list->next;
-		else
-			break ;
-	}
+	int	status;
+
+	ft_command_line();
+	if (builtin() == -1)
+		status = fork();
+	else
+		return ;
+	if (status == 0)
+		check_way();
+	else
+		waitpid(status, NULL, 0);
 }

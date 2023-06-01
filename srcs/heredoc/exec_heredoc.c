@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_pipe.c                                        :+:      :+:    :+:   */
+/*   exec_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/26 20:12:34 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/01 15:04:43 by mkarakul         ###   ########.fr       */
+/*   Created: 2023/06/01 13:58:02 by mkarakul          #+#    #+#             */
+/*   Updated: 2023/06/01 14:28:30 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	pipe_counter(void)
+void	exec_heredoc(void)
 {
-	t_arg	*temp;
+	char	**heredoc;
 	int		i;
 
-	temp = g_data.list;
+	heredoc = g_data.heredoc;
 	i = 0;
-	while (temp)
+	while (heredoc[i])
 	{
-		if (temp->type == PIPE)
-			i++;
-		temp = temp->next;
+		if (ft_strcmp(heredoc[i], "<<"))
+			ft_putstr_fd(heredoc[i + 1], 1);
+		else if (ft_strcmp(heredoc[i], ">>"))
+			ft_putstr_fd(heredoc[i + 1], 1);
+		i += 2;
 	}
-	g_data.pipe_c = i;
-	if (g_data.pipe_c == 0)
-		return (-1);
-	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:25:37 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/27 14:18:59 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/01 14:27:32 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	ft_execve(void)
 		execve(g_data.command[0], g_data.command, g_data.envp);
 	else
 	{
-		perror("minishell");
+		printf("minishell: %s: command not found\n", g_data.command[0]);
 		exit(0);
 	}
 }

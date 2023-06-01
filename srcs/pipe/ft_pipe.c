@@ -3,37 +3,77 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
+/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 01:40:23 by mustafakara       #+#    #+#             */
-/*   Updated: 2023/05/29 02:30:40 by mustafakara      ###   ########.fr       */
+/*   Updated: 2023/06/01 17:39:16 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void    ft_pipe_init(void)
+void	create_tubes(void)
 {
-    g_data.output_fd = malloc(sizeof(int) * g_data.pipe_c);
-    g_data.input_fd = malloc(sizeof(int) * g_data.pipe_c);
-	g_data.pipe = malloc(sizeof(int) * g_data.pipe_c);
-	g_data.fd_c = 0;
+	int	i;
+
+	i = -1;
+	g_data.all_pipe_fd = malloc(sizeof(int *) * g_data.pipe_c);
+	if (!g_data.all_pipe_fd)
+		return ;
+	while (++i < g_data.pipe_c)
+	{
+		g_data.all_pipe_fd[i] = malloc(sizeof(int) * 2);
+		pipe(g_data.all_pipe_fd[i]);
+	}
 }
 
-void	pipe_counter(void)
+void	set_file_descriptor(int id)
 {
-	t_arg	*temp;
-	int		i;
-
-	temp = g_data.list;
-	i = 0;
-	while (temp)
+	if (id == 0 || id % 2 == 0)
 	{
-		if (temp->type == PIPE)
-			i++;
-		temp = temp->next;
+		printf("İLK GİRDİ\n");
+		dup2(g_data.all_pipe_fd[0][1], 1);
+		close(g_data.all_pipe_fd[0][0]);
+		check_way();
 	}
-	g_data.pipe_c = i;
-    if (g_data.pipe_c > 0)
-        ft_pipe_init();
+	else
+	{
+		printf("İKİNCİ GİRDİ\n");
+		dup2(g_data.all_pipe_fd[0][0], 0);
+		close(g_data.all_pipe_fd[0][1]);
+		check_way();
+	}
+}
+
+void	initialize_fork(void)
+{
+	int	i;
+
+	i = 0;
+	g_data.pipe_id = malloc(sizeof(int) * g_data.pipe_c + 1);
+	while (i <= g_data.pipe_c)
+	{
+		ft_command_line();
+		g_data.pipe_id[i] = fork();
+		if (g_data.pipe_id[i] == 0)
+			set_file_descriptor(i);
+		i++;
+	}
+	i = 0;
+	close(g_data.all_pipe_fd[0][1]);
+	close(g_data.all_pipe_fd[0][0]);
+	while (i <= g_data.pipe_c)
+	{
+		waitpid(g_data.pipe_id[i], 0, 0);
+		i++;
+	}
+}
+
+int	initialize_pipe(void)
+{
+	if (pipe_counter() == -1)
+		return (-1);
+	create_tubes();
+	initialize_fork();
+	return (0);
 }
