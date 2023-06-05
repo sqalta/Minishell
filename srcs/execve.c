@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:25:37 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/04 01:48:32 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/05 23:21:50 by mustafakara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:30:35 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/04 01:12:43 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/05 18:54:03 by mustafakara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ typedef struct s_data
 
 	char	*here_line;
 	int		here_fd;
+
+	char	**dollars;
+	char	**dollar_line;
 }	t_data;
 
 
@@ -87,5 +90,8 @@ int		pipe_counter(void);
 void	create_tubes(void);
 
 void	ft_heredoc_line(void);
+
+void	ft_dollars_line(void);
+char	*ft_find_env(char *arg);
 
 #endif

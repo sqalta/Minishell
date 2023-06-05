@@ -9,6 +9,16 @@ int	is_quotation(char *s)
 	return (0);
 }
 
+int	type_quotation(char s)
+{
+	if (s == '\'')
+		return (1);
+	else if (s == '\"')
+		return (2);
+	else
+		return (0);
+}
+
 int is_space(char s)
 {
 	if (s == 32)

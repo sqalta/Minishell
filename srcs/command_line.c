@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_line.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:29:09 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/04 01:22:51 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/05 18:12:36 by mustafakara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_command_line2(t_arg *temp, int i, int j)
 {
 	while (temp && temp->type != PIPE)
 	{
-		if (temp->type == WORD)
+		if (temp->type == WORD || temp->type == DOLLAR)
 			g_data.command[i++] = ft_strdup(temp->arg);
 		else if (temp->type == DOUBLE_INPUT_RDR)
 			temp = temp->next;

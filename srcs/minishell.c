@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:59:02 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/04 01:40:12 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/05 18:23:09 by mustafakara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	start(void)
 		g_data.line = readline("minishell-$ ");
 		ft_parse();
 		ft_heredoc_line();
+		ft_dollars_line();
 		if (error_check() == -1)
 			continue ;
 		temp = g_data.list;

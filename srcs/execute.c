@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:28:23 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/04 01:26:38 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/05 18:21:43 by mustafakara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ void	execute(void)
 	int	status;
 
 	ft_command_line();
-	if (builtin() == -1)
+	if (builtin() == -1 && g_data.command[0] != NULL)
 		status = fork();
 	else
 		return ;
-	if (status == 0 && g_data.command[0] != NULL)
+	if (status == 0)
 		check_way();
 	else
 		waitpid(status, NULL, 0);
