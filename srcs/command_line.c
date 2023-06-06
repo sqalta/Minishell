@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:29:09 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/06 18:50:33 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/06 19:54:47 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void	ft_command_line(void)
 	j = 0;
 	temp = g_data.list;
 	ft_command_redirection_len(temp, i, j);
+	i = 0;
+	j = 0;
 	ft_command_line2(temp, i, j);
 	/*
 	while (g_data.command[i])
