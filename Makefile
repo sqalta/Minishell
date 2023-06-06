@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+         #
+#    By: spalta <spalta@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/26 18:58:37 by mkarakul          #+#    #+#              #
-#    Updated: 2023/06/06 04:19:09 by mkarakul         ###   ########.fr        #
+#    Updated: 2023/06/06 16:51:24 by spalta           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ $(LIBFT):
 clean:
 	rm -rf $(NAME)
 	rm -rf $(LIBFT)
+	cd libft/ && rm -rf *.o
 
 fclean: clean
 

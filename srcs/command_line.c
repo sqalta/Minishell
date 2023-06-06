@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_line.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
+/*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:29:09 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/05 18:12:36 by mustafakara      ###   ########.fr       */
+/*   Updated: 2023/06/06 16:49:54 by spalta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_command_line(void)
 	i = 0;
 	j = 0;
 	temp = g_data.list;
-	g_data.command = malloc(1000000);
-	g_data.redirection = malloc(1000000);
+	g_data.command = malloc(sizeof(char *) * (g_data.count_type->word - g_data.count_type->rdr)); //kontrolle!
+	g_data.redirection = malloc(sizeof(char *) * g_data.count_type->rdr * 2);
 	ft_command_line2(temp, i, j);
 }

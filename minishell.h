@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:30:35 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/06 04:18:59 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/06 16:40:59 by spalta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_data
 {
 	t_arg	*list;
 	t_arg	*temp_list;
+	t_type_counter *count_type;
 
 	char	*line;
 	char	**envp;

@@ -21,6 +21,14 @@ enum loc_quot {
     midle
 };
 
+typedef	struct	s_type_counter{
+	int	dollar;
+	int	rdr;
+	int	heredoc;
+	int	word;
+	int	pipe;
+}					t_type_counter;
+
 typedef struct s_arg {
 	struct s_arg	*next;
 	char			*arg;
