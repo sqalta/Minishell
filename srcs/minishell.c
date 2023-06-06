@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:59:02 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/06 19:15:52 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/06 19:29:11 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ void	start(void)
 		if (!temp)
 			continue ;
 		if (ft_strcmp(temp->arg, "exit"))
+		{
 			ft_exit(g_data.list);
+			continue ;
+		}
 		if (initialize_pipe() == -1)
 			execute();
 		add_history(g_data.line);
@@ -55,7 +58,13 @@ void	ft_struct_initilaize(char **envp)
 
 int	main(int ac, char **av, char **envp)
 {
-	ac = 0;
+	if (ac > 1)
+	{
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(av[1], 2);
+		ft_putstr_fd(": No such file or directory\n", 2);
+		exit(127);
+	}
 	av = NULL;
 	ft_struct_initilaize(envp);
 	start();

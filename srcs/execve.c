@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:25:37 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/06 18:47:05 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/06 19:26:15 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ int	control_bin(void)
 
 	temp = g_data.list;
 	i = 0;
-	if (ft_strncmp(g_data.command[0], "./", 2) == 0)
-		return (1);
+	//if (ft_strncmp(g_data.command[0], "./", 2) == 0)
+	//	return (1);
 	while (g_data.envp[i])
 	{
 		if (ft_strncmp(g_data.envp[i], "PATH=", 5) == 0)
