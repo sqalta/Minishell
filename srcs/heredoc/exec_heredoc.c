@@ -6,11 +6,27 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 13:58:02 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/04 01:12:07 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/06 19:10:17 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+int	ft_heredoc_counter(void)
+{
+	t_arg	*temp;
+	int		i;
+
+	temp = g_data.list;
+	i = 0;
+	while (temp)
+	{
+		if (temp->type == DOUBLE_INPUT_RDR && temp->next)
+			i++;
+		temp = temp->next;
+	}
+	return (i);
+}
 
 void	ft_heredoc_start(int i)
 {
@@ -52,10 +68,12 @@ void	ft_heredoc_line(void)
 {
 	t_arg	*temp;
 	int		i;
+	int		j;
 
 	temp = g_data.list;
 	i = 0;
-	g_data.heredoc = malloc(1000000);
+	j = ft_heredoc_counter();
+	g_data.heredoc = malloc(sizeof(char *) * (j * 2 + 1));
 	while (temp)
 	{
 		if (temp->type == DOUBLE_INPUT_RDR && temp->next)

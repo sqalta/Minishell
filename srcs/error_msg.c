@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 17:49:17 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/04 01:21:33 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/06 19:17:28 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@ int	error_check(void)
 
 	temp = g_data.list;
 	flag = 0;
+	if (temp->type == PIPE)
+	{
+		error_msg(1, temp);
+		return (-1);
+	}
 	while (temp)
 	{
 		if (temp->type == PIPE)

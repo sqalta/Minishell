@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_line.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:29:09 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/06 18:41:27 by spalta           ###   ########.fr       */
+/*   Updated: 2023/06/06 18:50:33 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	ft_command_redirection_len(t_arg *temp, int i, int j)
 		g_data.list = g_data.list->next;
 }
 
-
 void	ft_command_line(void)
 {
 	t_arg	*temp;
@@ -74,7 +73,7 @@ void	ft_command_line(void)
 	i = 0;
 	j = 0;
 	temp = g_data.list;
-	ft_command_redirection_len(temp,i ,j);
+	ft_command_redirection_len(temp, i, j);
 	ft_command_line2(temp, i, j);
 	/*
 	while (g_data.command[i])

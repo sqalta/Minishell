@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:28:23 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/06 13:53:16 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/06 18:52:54 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,9 @@
 
 void	check_way(void)
 {
-	t_arg	*temp;
 	int		status;
 
 	status = 0;
-	temp = g_data.list;
-	if (ft_strcmp(g_data.command[0], "export"))
-	{
-		ft_export();
-		exit(0);
-	}
 	if (g_data.redirection[0] != NULL)
 		exec_redir(status);
 	else if (g_data.command[0] != NULL)
@@ -42,7 +35,15 @@ void	execute(void)
 	else
 		return ;
 	if (status == 0)
-		check_way();
+	{
+		if (g_data.command[0][0] == '\0')
+		{
+			printf("minishell: %s: command not found\n", g_data.command[0]);
+			exit(127);
+		}
+		else
+			check_way();
+	}
 	else
 		waitpid(status, NULL, 0);
 }

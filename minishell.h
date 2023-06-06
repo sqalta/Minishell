@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:30:35 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/06 16:40:59 by spalta           ###   ########.fr       */
+/*   Updated: 2023/06/06 19:13:37 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ void	ft_dollars_line(void);
 char	*ft_find_env(char *arg);
 
 void	ft_exit(t_arg *data);
+void	ft_free_all(void);
 
 #endif

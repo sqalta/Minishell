@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:59:02 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/06 18:41:53 by spalta           ###   ########.fr       */
+/*   Updated: 2023/06/06 19:15:52 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ void	start(void)
 	{
 		g_data.line = readline("minishell-$ ");
 		ft_parse();
-		ft_heredoc_line();
-		ft_dollars_line();
 		if (error_check() == -1)
 			continue ;
+		ft_heredoc_line();
+		ft_dollars_line();
 		temp = g_data.list;
 		if (!temp)
 			continue ;
@@ -42,6 +42,7 @@ void	start(void)
 		if (initialize_pipe() == -1)
 			execute();
 		add_history(g_data.line);
+		ft_free_all();
 	}
 }
 
