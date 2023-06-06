@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
+/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:28:23 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/05 18:21:43 by mustafakara      ###   ########.fr       */
+/*   Updated: 2023/06/06 13:53:16 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ void	check_way(void)
 
 	status = 0;
 	temp = g_data.list;
+	if (ft_strcmp(g_data.command[0], "export"))
+	{
+		ft_export();
+		exit(0);
+	}
 	if (g_data.redirection[0] != NULL)
 		exec_redir(status);
 	else if (g_data.command[0] != NULL)

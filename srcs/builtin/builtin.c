@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
+/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 18:34:03 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/28 01:37:34 by mustafakara      ###   ########.fr       */
+/*   Updated: 2023/06/06 13:22:43 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	builtin(void)
 		ft_cd();
 	else if (ft_strcmp(g_data.command[0], "pwd"))
 		ft_pwd();
-	else if (ft_strcmp(g_data.command[0], "export"))
+	else if (ft_strcmp(g_data.command[0], "export") && g_data.command[1])
 		ft_export();
 	else if (ft_strcmp(g_data.command[0], "unset"))
 		ft_unset();

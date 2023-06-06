@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
+/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:59:02 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/05 18:23:09 by mustafakara      ###   ########.fr       */
+/*   Updated: 2023/06/06 12:26:22 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,7 @@ void	start(void)
 		if (!temp)
 			continue ;
 		if (ft_strcmp(temp->arg, "exit"))
-		{
-			write(1, "exit\n", 5);
-			exit(0);
-		}
+			ft_exit(g_data.list);
 		if (initialize_pipe() == -1)
 			execute();
 		add_history(g_data.line);

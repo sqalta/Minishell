@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
+/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:30:35 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/05 18:54:03 by mustafakara      ###   ########.fr       */
+/*   Updated: 2023/06/06 04:18:59 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,7 @@ void	ft_heredoc_line(void);
 
 void	ft_dollars_line(void);
 char	*ft_find_env(char *arg);
+
+void	ft_exit(t_arg *data);
 
 #endif

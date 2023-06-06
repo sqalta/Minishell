@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 18:41:07 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/27 16:48:45 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/06 13:51:39 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	*ft_export_path(void)
 	while (g_data.ex_path[i])
 	{
 		j = 0;
-		while (g_data.ex_path[i][j] != '=')
+		while (g_data.ex_path[i][j])
 			j++;
 		tmp = ft_substr(g_data.ex_path[i], 0, j);
 		ft_putstr_fd("declare -x ", 1);

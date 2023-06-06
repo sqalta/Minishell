@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
+/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 21:05:32 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/05 23:19:20 by mustafakara      ###   ########.fr       */
+/*   Updated: 2023/06/06 13:52:29 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	ft_pwd(void)
 	char	*path;
 
 	path = getcwd(NULL, 0);
-	printf("dlfksasidlfsaf");
 	ft_putstr_fd(path, 1);
 	ft_putstr_fd("\n", 1);
 	free(path);
@@ -29,16 +28,14 @@ char	**ft_addenv(void)
 	char	**tmp;
 
 	i = 0;
-	tmp = malloc(sizeof(char **) * 100000);
+	tmp = malloc(sizeof(char **) * 10000);
 	while (g_data.ex_path[i])
 	{
 		tmp[i] = g_data.ex_path[i];
 		i++;
 	}
 	tmp[i] = g_data.command[1];
-	g_data.ex_path = tmp;
-	free(tmp);
-	return (g_data.ex_path);
+	return (tmp);
 }
 
 void	*ft_delenv(int i, int env_c)
