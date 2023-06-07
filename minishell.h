@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:30:35 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/06 19:13:37 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/07 17:49:22 by mustafakara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	execute(void);
 
 int		ft_strcmp(char *s1, char *s2);
 
-char	**ft_addenv(void);
+char	**ft_addenv(int j);
 void	*ft_delenv(int i, int env_c);
 void	*ft_getenv(char *name, char **args);
 

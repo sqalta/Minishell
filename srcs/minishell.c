@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:59:02 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/06 19:58:10 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/07 18:31:35 by mustafakara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ void	start(void)
 		ft_heredoc_line();
 		ft_dollars_line();
 		temp = g_data.list;
-		if (!temp)
-			continue ;
 		if (ft_strcmp(temp->arg, "exit"))
 		{
 			ft_exit(g_data.list);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 18:41:07 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/06 13:51:39 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/07 17:49:27 by mustafakara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,15 @@ void	*ft_export_path(void)
 
 void	ft_export(void)
 {
-	if (!g_data.command[1] || ft_strcmp(g_data.command[1], "-p") == 1)
-		ft_export_path();
-	else
-		g_data.ex_path = ft_addenv();
+	int	j;
+
+	j = 1;
+	while (g_data.command[j])
+	{
+		if (!g_data.command[1] || ft_strcmp(g_data.command[1], "-p") == 1)
+			ft_export_path();
+		else
+			g_data.ex_path = ft_addenv(j);
+		j++;
+	}
 }

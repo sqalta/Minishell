@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 21:05:32 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/06 13:52:29 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/07 17:49:11 by mustafakara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_pwd(void)
 	free(path);
 }
 
-char	**ft_addenv(void)
+char	**ft_addenv(int j)
 {
 	int		i;
 	char	**tmp;
@@ -34,7 +34,7 @@ char	**ft_addenv(void)
 		tmp[i] = g_data.ex_path[i];
 		i++;
 	}
-	tmp[i] = g_data.command[1];
+	tmp[i] = g_data.command[j];
 	return (tmp);
 }
 
