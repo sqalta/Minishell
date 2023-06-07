@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 13:58:02 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/06 19:10:17 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/07 12:27:56 by mustafakara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,10 @@ void	ft_heredoc_line(void)
 	}
 	g_data.heredoc[i] = NULL;
 	if (i > 0)
+	{
 		ft_heredoc();
+		//dup2(g_data.here_fd, 0);
+	}
 	else
 		return ;
 }

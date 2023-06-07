@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:25:37 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/06 21:14:54 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/07 12:13:00 by mustafakara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ int	control_bin(void)
 
 	temp = g_data.list;
 	i = 0;
-	//if (ft_strncmp(g_data.command[0], "./", 2) == 0)
-	//	return (1);
+	if (ft_strncmp(g_data.command[0], "./", 2) == 0)
+		return (1);
 	while (g_data.envp[i])
 	{
 		if (ft_strncmp(g_data.envp[i], "PATH=", 5) == 0)
@@ -75,7 +75,13 @@ void	ft_execve(void)
 
 	temp = g_data.list;
 	if (control_bin())
-		execve(g_data.command[0], g_data.command, g_data.envp);
+	{
+		if (execve(g_data.command[0], g_data.command, g_data.envp))
+		{
+			perror("minishell");
+			exit(0);
+		}
+	}
 	else
 	{
 		printf("minishell: %s: command not found\n", g_data.command[0]);
