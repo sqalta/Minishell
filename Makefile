@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+         #
+#    By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/26 18:58:37 by mkarakul          #+#    #+#              #
-#    Updated: 2023/06/06 19:13:52 by mkarakul         ###   ########.fr        #
+#    Updated: 2023/06/08 00:41:29 by mustafakara      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRC = srcs/utils/ft_strcmp.c srcs/minishell.c \
 	srcs/heredoc/exec_heredoc.c srcs/error_msg.c srcs/dollars/ft_dollars_line.c \
 	srcs/dollars/ft_find_env.c srcs/ft_exit.c srcs/ft_free.c
 
-CC = gcc -g  #-fsanitize=address
+CC = gcc #-g -fsanitize=address
 FLAG = -lreadline -o $(NAME)
 
 all: $(NAME)

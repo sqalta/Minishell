@@ -6,7 +6,7 @@
 /*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 21:05:32 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/07 22:20:43 by mustafakara      ###   ########.fr       */
+/*   Updated: 2023/06/08 00:43:14 by mustafakara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,19 @@ void	ft_pwd(void)
 char	**ft_addenv(int j)
 {
 	int		i;
-	int		x;
 	char	**tmp;
+	char 	*force;
 
 	i = 0;
-	x = ft_ex_env_counter();
+	force = ft_strjoin(g_data.command[j], "=");
 	tmp = malloc(100000);
 	while (g_data.ex_path[i])
 	{
 		tmp[i] = g_data.ex_path[i];
 		i++;
 	}
-	tmp[i] = g_data.command[j];
+	tmp[i] = force;
+	tmp[i + 1] = NULL;
 	return (tmp);
 }
 

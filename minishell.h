@@ -6,7 +6,7 @@
 /*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:30:35 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/07 22:06:05 by mustafakara      ###   ########.fr       */
+/*   Updated: 2023/06/08 00:30:08 by mustafakara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,7 @@ void	ft_free_all(void);
 void	*ft_export_path(void);
 
 int		ft_env_counter(void);
+void	ft_free_array(char **array);
+void	ft_put_env_export(int j);
 
 #endif

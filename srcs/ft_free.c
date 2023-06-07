@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 19:12:24 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/06 19:13:31 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/08 00:29:04 by mustafakara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,17 @@ void	ft_free_all(void)
 		i++;
 	}
 	free(g_data.redirection);
+}
+
+void	ft_free_array(char **array)
+{
+	int	i;
+
+	i = 0;
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
 }
