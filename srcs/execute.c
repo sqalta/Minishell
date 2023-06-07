@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:28:23 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/06 20:01:02 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/07 22:17:58 by mustafakara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ void	check_way(void)
 	}
 	else if (g_data.command[0] != NULL)
 		ft_execve();
-	if (ft_strcmp(g_data.command[0], "echo"))
-		ft_echo();
 }
 
 void	execute(void)
@@ -40,7 +38,20 @@ void	execute(void)
 	else
 		return ;
 	if (status == 0)
-		check_way();
+	{
+		if (ft_strcmp(g_data.command[0], "export"))
+		{
+			ft_export_path();
+			exit(0);
+		}
+		else if (ft_strcmp(g_data.command[0], "echo"))
+		{
+			ft_echo();
+			exit(0);
+		}
+		else
+			check_way();
+	}
 	else
 		waitpid(status, NULL, 0);
 }

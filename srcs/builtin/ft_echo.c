@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 19:04:59 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/05/27 15:46:24 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/07 22:19:43 by mustafakara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ void	ft_echo(void)
 {
 	int	i;
 
-	i = 0;
+	i = 1;
 	if (g_data.command[i] == NULL)
 	{
 		ft_putstr_fd("\n", 1);
 		return ;
 	}
-	if (ft_echo_param_checker(g_data.command[1]) == 1)
+	while (ft_echo_param_checker(g_data.command[i]) == 1)
 		i++;
 	while (g_data.command[i])
 	{
