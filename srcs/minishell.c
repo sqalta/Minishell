@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:59:02 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/08 16:26:23 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/08 16:39:01 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,26 @@ void	start(void)
 	{
 		g_data.line = readline("minishell-$ ");
 		ft_parse();
-		if (error_check() == -1)
-			continue ;
-		ft_heredoc_line();
-		ft_dollars_line();
-		temp = g_data.list;
-		if (ft_strcmp(temp->arg, "exit"))
+		system("leaks minishell");
+		if (1 == 5)
 		{
-			ft_exit(g_data.list);
-			continue ;
+			if (error_check() == -1)
+				continue ;
+			ft_heredoc_line();
+			ft_dollars_line();
+			temp = g_data.list;
+			if (ft_strcmp(temp->arg, "exit"))
+			{
+				ft_exit(g_data.list);
+				continue ;
+			}
+			if (initialize_pipe() == -1)
+			{
+				execute();
+			}
+			add_history(g_data.line);
+			ft_free_all();
 		}
-		if (initialize_pipe() == -1)
-		{
-			execute();
-		}
-		add_history(g_data.line);
-		ft_free_all();
 	}
 }
 
