@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
+/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:25:37 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/07 12:13:00 by mustafakara      ###   ########.fr       */
+/*   Updated: 2023/06/08 16:21:21 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	ft_execve(void)
 	temp = g_data.list;
 	if (control_bin())
 	{
+
 		if (execve(g_data.command[0], g_data.command, g_data.envp))
 		{
 			perror("minishell");

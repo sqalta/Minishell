@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
+/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:30:35 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/08 00:30:08 by mustafakara      ###   ########.fr       */
+/*   Updated: 2023/06/08 16:26:27 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 typedef struct s_data
 {
 	t_arg	*list;
-	t_arg	*temp_list;
 	t_type_counter *count_type;
 
 	char	*line;
@@ -100,7 +99,7 @@ void	ft_free_all(void);
 void	*ft_export_path(void);
 
 int		ft_env_counter(void);
-void	ft_free_array(char **array);
+void	ft_free_child(char **array);
 void	ft_put_env_export(int j);
 
 #endif
