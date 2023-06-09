@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 18:41:07 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/09 19:20:02 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/09 19:40:15 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	ft_export(void)
 		//if (ft_env_controller(j) == 1)
 		//	ft_put_env_export(j);
 		//else
-			//g_data.ex_path = ft_addenv(j);
+		g_data.ex_path = ft_addenv(j);
 	}	
 }
 

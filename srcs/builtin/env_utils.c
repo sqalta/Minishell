@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 21:05:32 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/09 19:20:38 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/09 19:41:41 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ char	**ft_addenv(int j)
 	}
 	tmp[i] = force;
 	tmp[i + 1] = NULL;
+	free(force);
 	return (tmp);
 }
 
