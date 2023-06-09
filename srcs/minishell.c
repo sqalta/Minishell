@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:59:02 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/09 16:11:43 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/09 17:52:57 by spalta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	start(void)
 		g_data.line = readline("minishell-$ ");
 		ft_parse();
 		temp = g_data.list;
+		//getchar();
+		//system("leaks minishell");
 		add_history(g_data.line);
 		free(g_data.line);
 		if (error_check() == -1)
@@ -48,8 +50,15 @@ void	start(void)
 		}
 		if (initialize_pipe() == -1)
 			execute();
-		g_data.list = temp;
 		ft_free_all();
+		t_arg 	*tmp;
+		while (temp)
+		{
+			tmp = temp;
+			free(tmp->arg);
+			free(tmp);
+			temp = temp->next;
+		}
 		system("leaks minishell");
 	}
 }

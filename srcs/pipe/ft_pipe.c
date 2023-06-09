@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 01:40:23 by mustafakara       #+#    #+#             */
-/*   Updated: 2023/06/04 01:33:13 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/09 17:58:02 by spalta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,25 @@ void	set_file_descriptor(int id)
 		//close(g_data.all_pipe_fd[id - 1][1]);
 		check_way();
 	}
-}	
+}
+
+void	ft_free_command_redirection()
+{
+	int	i;
+
+	i = -1;
+	while (g_data.command[++i])
+		free(g_data.command[i]);
+	free(g_data.command);
+	i = -1;
+	if (g_data.redirection)
+	{
+		while (g_data.redirection[++i])
+			free(g_data.redirection[i]);
+		free(g_data.redirection);
+	}
+}
+
 
 void	initialize_fork(void)
 {
@@ -112,6 +130,8 @@ void	initialize_fork(void)
 	g_data.pipe_id = malloc(sizeof(int) * (g_data.pipe_c + 1));
 	while (i <= g_data.pipe_c)
 	{
+		if (i != 0)
+			ft_free_command_redirection();
 		ft_command_line();
 		g_data.pipe_id[i] = fork();
 		if (g_data.pipe_id[i] == 0)
@@ -133,6 +153,14 @@ void	initialize_fork(void)
 		waitpid(g_data.pipe_id[i], 0, 0);
 		i++;
 	}
+	free(g_data.pipe_id);
+	i = 0;
+	while (i < g_data.pipe_c)
+	{
+		free(g_data.all_pipe_fd[i]);
+		i++;
+	}
+	free(g_data.all_pipe_fd);
 }
 
 int	initialize_pipe(void)

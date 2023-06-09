@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 19:12:24 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/09 15:48:18 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/09 17:52:36 by spalta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_free_all(void)
 		free(g_data.list->arg);
 		g_data.list = g_data.list->next;
 	}
+	free(g_data.list);
 	i = 0;
 	if (g_data.command)
 	{
