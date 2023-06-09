@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
+/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 13:58:02 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/07 12:27:56 by mustafakara      ###   ########.fr       */
+/*   Updated: 2023/06/09 16:10:29 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ void	ft_heredoc_line(void)
 	temp = g_data.list;
 	i = 0;
 	j = ft_heredoc_counter();
-	g_data.heredoc = malloc(sizeof(char *) * (j * 2 + 1));
+	if (j > 0)
+		g_data.heredoc = malloc(sizeof(char *) * (j * 2 + 1));
 	while (temp)
 	{
 		if (temp->type == DOUBLE_INPUT_RDR && temp->next)
