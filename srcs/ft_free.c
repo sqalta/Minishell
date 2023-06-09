@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 19:12:24 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/09 17:52:36 by spalta           ###   ########.fr       */
+/*   Updated: 2023/06/09 19:14:56 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,11 @@ void	ft_free_all(void)
 	}
 	if (g_data.count_type)
 		free(g_data.count_type);
-}
-
-void	ft_free_child(char **array)
-{
-	int	i;
-
 	i = 0;
-	while (g_data.list)
+	if (g_data.heredoc)
 	{
-		free(g_data.list->arg);
-		g_data.list = g_data.list->next;
+		while (g_data.heredoc[i])
+			free(g_data.heredoc[i++]);
+		free(g_data.heredoc);
 	}
-	free(g_data.line);
-	if (!g_data.redirection)
-		return ;
-	while (g_data.redirection[i])
-		free(g_data.redirection[i++]);
 }

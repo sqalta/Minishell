@@ -6,7 +6,7 @@
 /*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 01:40:23 by mustafakara       #+#    #+#             */
-/*   Updated: 2023/06/09 18:40:40 by spalta           ###   ########.fr       */
+/*   Updated: 2023/06/09 17:58:02 by spalta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,22 @@ void	set_file_descriptor(int id)
 {
 	if (id == 0)
 	{
+        //printf("firs id: %d\n", id);
 		dup2(g_data.all_pipe_fd[id][1], 1);
 		close_fd(id);
+        //close(g_data.all_pipe_fd[id][0]);
+		//close(g_data.all_pipe_fd[id + 1][1]);
+		//close(g_data.all_pipe_fd[id + 1][0]);
 		check_way();
 	}
 	else if (id == g_data.pipe_c)
 	{
+		//printf("last id: %d\n", id);
 		dup2(g_data.all_pipe_fd[id - 1][0], 0);
 		close_fd(id);
+    	//close(g_data.all_pipe_fd[id - 1][1]);
+    	//close(g_data.all_pipe_fd[id - 2][0]);
+    	//close(g_data.all_pipe_fd[id - 2][1]);
 		check_way();
 	}
 	else
@@ -90,6 +98,8 @@ void	set_file_descriptor(int id)
 		dup2(g_data.all_pipe_fd[id - 1][0], 0);
 		dup2(g_data.all_pipe_fd[id][1], 1);
 		close_fd(id);
+		//close(g_data.all_pipe_fd[id][0]);
+		//close(g_data.all_pipe_fd[id - 1][1]);
 		check_way();
 	}
 }

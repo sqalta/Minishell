@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:59:02 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/09 17:52:57 by spalta           ###   ########.fr       */
+/*   Updated: 2023/06/09 19:11:00 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ void	exec_shell(int status)
 void	start(void)
 {
 	t_arg	*temp;
+	t_arg	*tmp;
 
+	tmp = NULL;
 	while (1)
 	{
 		signal(SIGINT, ft_sig_handler);
@@ -51,7 +53,6 @@ void	start(void)
 		if (initialize_pipe() == -1)
 			execute();
 		ft_free_all();
-		t_arg 	*tmp;
 		while (temp)
 		{
 			tmp = temp;
@@ -59,7 +60,6 @@ void	start(void)
 			free(tmp);
 			temp = temp->next;
 		}
-		system("leaks minishell");
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_msg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mustafakarakulak <mustafakarakulak@stud    +#+  +:+       +#+        */
+/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 17:49:17 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/07 18:31:17 by mustafakara      ###   ########.fr       */
+/*   Updated: 2023/06/09 19:07:12 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	error_msg(int flag, t_arg *temp)
 		else
 			str = ft_strdup(temp->next->arg);
 		printf("minishell: syntax error near unexpected token '%s'\n", str);
+		free(str);
 		return (-1);
 	}
 	else
