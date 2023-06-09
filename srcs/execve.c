@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:25:37 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/08 16:21:21 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/09 15:25:19 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,7 @@ int	control_bin(void)
 			path = g_data.envp[i] + 5;
 			break ;
 		}
-		else
-			i++;
+		i++;
 	}
 	if (g_data.envp[i] == NULL)
 		return (0);
@@ -71,21 +70,22 @@ int	control_bin(void)
 
 void	ft_execve(void)
 {
-	t_arg	*temp;
-
-	temp = g_data.list;
-	if (control_bin())
+	if (g_data.command[0][0] == '\0')
 	{
-
+		printf("minishell: %s: command not found\n", g_data.command[0]);
+		exit(127);
+	}
+	else if (control_bin())
+	{
 		if (execve(g_data.command[0], g_data.command, g_data.envp))
 		{
 			perror("minishell");
-			exit(0);
+			exit(127);
 		}
 	}
 	else
 	{
 		printf("minishell: %s: command not found\n", g_data.command[0]);
-		exit(0);
+		exit(127);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:30:35 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/08 18:36:39 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/09 13:23:13 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,35 +22,29 @@
 # include <readline/history.h>
 # include <fcntl.h>
 # include <dirent.h>
+# include <stdarg.h>
+# include <string.h>
 
 typedef struct s_data
 {
-	t_arg	*list;
-	t_type_counter *count_type;
+	t_arg			*list;
+	t_type_counter	*count_type;
+	char			*line;
+	char			**envp;
+	char			**ex_path;
+	char			**heredoc;
+	char			**command;
+	char			**redirection;
 
-	char	*line;
-	char	**envp;
-	char	**ex_path;
-	char	**heredoc;
-	char	**command;
-	char	**redirection;
-
-	int		**all_pipe_fd;
-	int		fd;
-	int		fd_c;
-	int		status;
-	int		pipe_c;
-	int		p_fd[2];
-	int		*pipe_id;
-	int		*input_fd;
-	int		*output_fd;
-	int		*exit_status;
-
-	char	*here_line;
-	int		here_fd;
-
-	char	**dollars;
-	char	**dollar_line;
+	int				**all_pipe_fd;
+	int				fd;
+	int				pipe_c;
+	int				*pipe_id;
+	int				exit_status;
+	char			*here_line;
+	int				here_fd;
+	char			**dollars;
+	char			**dollar_line;
 }	t_data;
 
 
