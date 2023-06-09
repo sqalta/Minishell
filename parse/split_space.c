@@ -4,8 +4,10 @@
 
 int	is_quotation(char *s)
 {
-	if (*s == '\"' || *s == '\'')
+	if (*s == '\"')
 		return (1);
+	else if ( *s == '\'')
+		return (2);
 	return (0);
 }
 
@@ -39,8 +41,11 @@ void	split_line(char *s, t_arg *line)
 	quo = 0;
 	while (++i || 1)
 	{
-		if (is_quotation(&s[i]) && len++)
-			while (!is_quotation(&s[++i]) && s[i])
+		if (is_quotation(&s[i]) == 1 && len++)
+			while (!(is_quotation(&s[++i]) == 1) && s[i])
+				len++;
+		else if (is_quotation(&s[i]) == 2 && len++)
+			while (!(is_quotation(&s[++i]) == 2) && s[i])
 				len++;
 		if (is_space(s[i]) || !s[i])
 		{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 19:20:57 by spalta            #+#    #+#             */
-/*   Updated: 2023/06/08 16:39:08 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/09 19:07:28 by spalta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	print_list(t_arg *lst)
 
 void	tokenizer(t_arg **prompt)
 {
-	split_by_space(g_data.line, prompt);
+	split_by_space(g_data.line, prompt); // tek tırnak çift tırnak içi kontrolünü tekrar yap!
 	split_by_redirection(prompt);
 	split_by_pipe(prompt);
 }
