@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:28:23 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/09 13:13:49 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/09 15:59:49 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ void	check_way(void)
 
 	status = 0;
 	if (g_data.redirection != NULL)
+	{
 		exec_redir(status);
-	else if (g_data.command[0] != NULL)
+	}
+	else if (g_data.command != NULL)
 		ft_execve();
 }
 

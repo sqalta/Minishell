@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 20:09:59 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/06 19:56:19 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/09 15:53:13 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	exec_redir(int status)
 		{
 			g_data.fd = open(redir[i + 1], O_CREAT | O_WRONLY | O_TRUNC, 0644);
 			dup2(g_data.fd, 1);
-			if (g_data.command[0] != NULL && redir[i + 2]
-				== NULL && !ft_strcmp(g_data.command[0], "echo"))
+			if (g_data.command && !redir[i + 2]
+				&& !ft_strcmp(g_data.command[0], "echo"))
 			{
 				exec_shell(status);
 			}
@@ -36,7 +36,7 @@ void	exec_redir(int status)
 		{
 			g_data.fd = open(redir[i + 1], O_RDONLY, 0644);
 			dup2(g_data.fd, 0);
-			if (g_data.command[0] != NULL && redir[i + 2] == NULL)
+			if (g_data.command && !redir[i + 2])
 				exec_shell(status);
 			close(g_data.fd);
 		}
@@ -44,7 +44,7 @@ void	exec_redir(int status)
 		{
 			g_data.fd = open(redir[i + 1], O_CREAT | O_WRONLY | O_APPEND, 0644);
 			dup2(g_data.fd, 1);
-			if (g_data.command[0] != NULL && redir[i + 2] == NULL
+			if (g_data.command[0] && !redir[i + 2]
 				&& !ft_strcmp(g_data.command[0], "echo"))
 				exec_shell(status);
 			close(g_data.fd);

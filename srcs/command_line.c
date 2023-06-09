@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:29:09 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/09 15:16:40 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/09 15:51:43 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ void	ft_command_redirection_len(t_arg *temp, int i, int j)
 		else if (temp->type == OUTPUT_RDR || temp->type == INPUT_RDR
 			|| temp->type == DOUBLE_OUTPUT_RDR)
 		{
-			j++;
-			j++;
+			j += 2;
 			temp = temp->next;
 		}
 		temp = temp->next;

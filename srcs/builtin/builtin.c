@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 18:34:03 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/06 13:22:43 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/09 15:41:13 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	builtin(void)
 {
-	if (g_data.command[0] == NULL)
+	if (g_data.command == NULL)
 		return (-1);
 	if (ft_strcmp(g_data.command[0], "cd"))
 		ft_cd();

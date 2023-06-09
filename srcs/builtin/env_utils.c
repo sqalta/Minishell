@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 21:05:32 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/09 13:11:07 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/09 16:04:02 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,14 @@ void	ft_pwd(void)
 char	**ft_addenv(int j)
 {
 	int		i;
+	int		env_c;
 	char	**tmp;
 	char	*force;
 
 	i = 0;
+	env_c = ft_ex_env_counter();
 	force = ft_strjoin(g_data.command[j], "=");
-	tmp = malloc(100000);
+	tmp = (char **)malloc(sizeof(char *) * (env_c + 2));
 	while (g_data.ex_path[i])
 	{
 		tmp[i] = g_data.ex_path[i];
@@ -61,7 +63,7 @@ void	*ft_delenv(int i, int env_c)
 	c = 0;
 	j = 0;
 	x = ft_env_counter();
-	tmp = malloc(100000);
+	tmp = (char **)malloc(sizeof(char *) * (x));
 	while (g_data.envp[j])
 	{
 		if (j == i)

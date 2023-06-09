@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 19:12:24 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/09 13:31:16 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/09 15:48:18 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	ft_free_all(void)
 			free(g_data.redirection[i++]);
 		free(g_data.redirection);
 	}
-	i = 0;
 	if (g_data.count_type)
 		free(g_data.count_type);
 }
