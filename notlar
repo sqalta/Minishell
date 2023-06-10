@@ -1,0 +1,3 @@
+"export'ta leak var && aynı zamanda değişim sonrası doğru çıktıyı girmiyor ekrana."
+
+"unset birden fazla argüman verince leaks veriyor && tek başına değişim yapınca da "env" seg veriyor."
