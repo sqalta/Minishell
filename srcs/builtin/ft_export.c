@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 18:41:07 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/09 19:40:15 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/10 17:07:11 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,18 @@ void	ft_export(void)
 {
 	int	j;
 
-	j = 0;
+	j = 1;
 	while (g_data.command[j])
 	{
+		if (ft_env_controller(j) == 1)
+			ft_put_env_export(j);
+		else
+			ft_addenv(j);
 		j++;
-		//if (ft_env_controller(j) == 1)
-		//	ft_put_env_export(j);
-		//else
-		g_data.ex_path = ft_addenv(j);
 	}	
 }
 
+//LEAKS VAR!!!
 void	ft_put_env_export(int j)
 {
 	int		i;

@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 21:05:32 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/09 19:41:41 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/10 17:08:38 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ char	**ft_addenv(int j)
 	}
 	tmp[i] = force;
 	tmp[i + 1] = NULL;
-	free(force);
+	free(g_data.ex_path);
+	g_data.ex_path = tmp;
 	return (tmp);
 }
 
@@ -68,14 +69,17 @@ void	*ft_delenv(int i, int env_c)
 	while (g_data.envp[j])
 	{
 		if (j == i)
+		{
+			free(g_data.envp[j]);
 			j++;
+		}
 		tmp[c] = g_data.envp[j];
 		c++;
 		j++;
 	}
 	tmp[c] = NULL;
+	free(g_data.envp);
 	g_data.envp = tmp;
-	free(tmp);
 	return (NULL);
 }
 

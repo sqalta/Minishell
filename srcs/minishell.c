@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:59:02 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/10 15:54:18 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/10 16:53:37 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,31 @@ void	freeliazer(t_arg *tmp, t_arg *temp)
 	}
 }
 
+char	**create_cpy_env(char **envp)
+{
+	int		i;
+	char	**cpy_env;
+
+	i = 0;
+	while (envp[i])
+		i++;
+	cpy_env = (char **)malloc(sizeof(char *) * (i + 1));
+	i = 0;
+	while (envp[i])
+	{
+		cpy_env[i] = ft_strdup(envp[i]);
+		i++;
+	}
+	cpy_env[i] = NULL;
+	return (cpy_env);
+}
+
 void	ft_struct_initilaize(char **envp, int flag)
 {
 	if (flag)
 	{
-		g_data.ex_path = envp;
-		g_data.envp = envp;
+		g_data.ex_path = create_cpy_env(envp);
+		g_data.envp = create_cpy_env(envp);
 	}
 	g_data.exit_status = 0;
 	g_data.list = NULL;
