@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:25:37 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/09 15:46:03 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/10 19:58:03 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ int	control_bin(void)
 		i++;
 	}
 	if (g_data.envp[i] == NULL)
-		return (0);
+		return (1);
 	if (control_bin2(temp, path, j, dir))
 		return (1);
-	return (0);
+	return (1);
 }
 
 void	ft_execve(void)
@@ -82,10 +82,5 @@ void	ft_execve(void)
 			perror("minishell");
 			exit(127);
 		}
-	}
-	else
-	{
-		printf("minishell: %s: command not found\n", g_data.command[0]);
-		exit(127);
 	}
 }

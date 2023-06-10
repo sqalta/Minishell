@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 19:04:33 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/09 13:11:10 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/10 22:00:02 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,13 @@ void	ft_pwd_changer(void)
 	{
 		if (ft_strncmp(g_data.envp[i], "PWD=", 4) == 0)
 		{
+			free(g_data.envp[i]);
 			g_data.envp[i] = ft_strjoin("PWD=", str);
+			free(str);
 			break ;
 		}
 		i++;
 	}
-	free(str);
 }
 
 void	ft_cd(void)
