@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_msg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 17:49:17 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/10 15:39:03 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/10 19:19:09 by spalta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	error_check(void)
 	{
 		if (temp->type == PIPE)
 		{
-			if (temp->next == NULL)
+			if (temp->next == NULL || temp->next->type == PIPE)
 			{
 				flag = 1;
 				break ;

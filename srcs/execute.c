@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:28:23 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/09 19:24:38 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/10 19:12:38 by spalta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ void	check_way(void)
 		exec_redir(status);
 	if (ft_strcmp(g_data.command[0], "export"))
 	{
-		ft_export_path();
+		if (g_data.command[1] == NULL)
+			ft_export_path();
+		else
+			ft_export();
 		exit(0);
 	}
 	else if (ft_strcmp(g_data.command[0], "echo"))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_find_env.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:27:33 by mustafakara       #+#    #+#             */
-/*   Updated: 2023/06/10 17:11:03 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/10 18:42:44 by spalta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,20 @@ char	*line_connect(t_arg *list)
 char	*ft_find_env(char *arg)
 {
 	int		i;
-	char	**envp;
+	int		len;
 	char	*line;
+	char	*ret;
 
 	i = 0;
-	envp = g_data.envp;
 	line = line_connect(g_data.list);
-	while (envp[i])
+	len = ft_strlen(line);
+	free(line);
+	while (g_data.envp[i])
 	{
-		if (ft_strncmp(line, envp[i], ft_strlen(line)) == 0)
+		if (ft_strncmp(line, g_data.envp[i], ft_strlen(line)) == 0)
 		{
-			line = ft_strdup(envp[i] + ft_strlen(line) + 1);
-			return (line);
+			ret = ft_strdup(g_data.envp[i] + len + 1);
+			return (ret);
 		}
 		i++;
 	}

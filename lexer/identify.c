@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   identify.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:35:14 by serif             #+#    #+#             */
-/*   Updated: 2023/06/04 01:42:14 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/10 19:06:25 by spalta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,19 +62,12 @@ int	identify_token(t_arg	**prompt)
 	while (iter)
 	{
 		if (contains_dollars(iter->arg))
-		{
 			iter->type = DOLLAR;
-			if (iter->next)
-				iter = iter->next;
-		}
 		else if (is_redirection(iter->arg) || is_pipe(iter->arg))
 			initilaze_metacharacter(iter);
 		else
 			iter->type = WORD;
-		if (iter->next)
-			iter = iter->next;
-		else
-			break ;
+		iter = iter->next;
 	}
 	return (0);
 }
