@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 19:12:24 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/09 19:14:56 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/10 15:40:43 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,15 @@ void	ft_free_all(void)
 {
 	int	i;
 
-	while (g_data.list)
+	if (g_data.list)
 	{
-		free(g_data.list->arg);
-		g_data.list = g_data.list->next;
+		while (g_data.list)
+		{
+			free(g_data.list->arg);
+			free(g_data.list);
+			g_data.list = g_data.list->next;
+		}
 	}
-	free(g_data.list);
 	i = 0;
 	if (g_data.command)
 	{

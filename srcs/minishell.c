@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:59:02 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/09 19:46:40 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/10 15:54:18 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,32 @@ void	exec_shell(int status)
 void	freeliazer(t_arg *tmp, t_arg *temp)
 {
 	ft_free_all();
-	while (temp)
+	if (temp)
 	{
-		tmp = temp;
-		free(tmp->arg);
-		free(tmp);
-		temp = temp->next;
+		while (temp)
+		{
+			tmp = temp;
+			free(tmp->arg);
+			free(tmp);
+			temp = temp->next;
+		}
 	}
+}
+
+void	ft_struct_initilaize(char **envp, int flag)
+{
+	if (flag)
+	{
+		g_data.ex_path = envp;
+		g_data.envp = envp;
+	}
+	g_data.exit_status = 0;
+	g_data.list = NULL;
+	g_data.command = NULL;
+	g_data.redirection = NULL;
+	g_data.count_type = NULL;
+	g_data.heredoc = NULL;
+	g_data.line = NULL;
 }
 
 void	start(void)
@@ -42,6 +61,7 @@ void	start(void)
 	tmp = NULL;
 	while (1)
 	{
+		ft_struct_initilaize(g_data.envp, 0);
 		signal(SIGINT, ft_sig_handler);
 		signal(SIGQUIT, ft_sig_handler);
 		g_data.line = readline("minishell-$ ");
@@ -51,6 +71,7 @@ void	start(void)
 		free(g_data.line);
 		if (error_check() == -1)
 		{
+			temp = NULL;
 			freeliazer(tmp, temp);
 			continue ;
 		}
@@ -69,12 +90,6 @@ void	start(void)
 	}
 }
 
-void	ft_struct_initilaize(char **envp)
-{
-	g_data.envp = envp;
-	g_data.ex_path = envp;
-	g_data.exit_status = 0;
-}
 
 int	main(int ac, char **av, char **envp)
 {
@@ -86,7 +101,7 @@ int	main(int ac, char **av, char **envp)
 		exit(127);
 	}
 	av = NULL;
-	ft_struct_initilaize(envp);
+	ft_struct_initilaize(envp, 1);
 	start();
 	return (0);
 }
