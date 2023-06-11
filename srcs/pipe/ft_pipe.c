@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 01:40:23 by mustafakara       #+#    #+#             */
-/*   Updated: 2023/06/10 18:59:55 by spalta           ###   ########.fr       */
+/*   Updated: 2023/06/11 13:33:32 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,8 @@ void	ft_free_command_redirection()
 			free(g_data.redirection[i]);
 		free(g_data.redirection);
 	}
+	g_data.command = NULL;
+	g_data.redirection = NULL;
 }
 
 
