@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 01:40:23 by mustafakara       #+#    #+#             */
-/*   Updated: 2023/06/11 13:33:32 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/11 14:08:43 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,16 +123,19 @@ void	ft_free_command_redirection()
 	g_data.redirection = NULL;
 }
 
-
 void	initialize_fork(void)
 {
 	int	i;
+	int	j; 
+	int	k;
 
+	j = -1;
+	k = -1;
 	i = 0;
 	g_data.pipe_id = malloc(sizeof(int) * (g_data.pipe_c + 1));
 	while (i <= g_data.pipe_c)
 	{
-		if (i != 0)
+		if (i != 0 && g_data.command)
 			ft_free_command_redirection();
 		ft_command_line();
 		g_data.pipe_id[i] = fork();
@@ -142,8 +145,6 @@ void	initialize_fork(void)
 			i++;
 	}
 	i = 0;
-	int j = -1;
-	int k = -1;
 	while (++k != g_data.pipe_c)
 	{
 		while (++j != 2)
