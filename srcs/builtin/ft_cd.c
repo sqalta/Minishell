@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 19:04:33 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/11 15:02:36 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/11 15:21:15 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,13 @@ void	ft_pwd_changer(void)
 
 void	ft_cd(void)
 {
+	ft_oldpwd_changer();
 	if (g_data.command[1] && ft_strcmp(g_data.command[1], "~") == 0)
 	{
 		if (chdir(g_data.command[1]))
 			perror("minishell ");
-		ft_pwd_changer();
 	}
 	else if (chdir(getenv("HOME")))
-		ft_pwd_changer();
+		perror("minishell ");
+	ft_pwd_changer();
 }
