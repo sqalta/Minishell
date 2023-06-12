@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:27:33 by mustafakara       #+#    #+#             */
-/*   Updated: 2023/06/12 16:47:19 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/12 22:27:50 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ char	*ft_find_env(char *arg)
 	line = line_connect(arg);
 	len = ft_strlen(line);
 	free(line);
+	if (arg[0] == '0' && arg[1] == '\0')
+	{
+		ret = ft_strdup("minishell");
+		free(arg);
+		return (ret);
+	}
 	while (g_data.envp[i])
 	{
 		if (ft_equal_finder(line, g_data.envp[i]) == 1)
@@ -66,5 +72,6 @@ char	*ft_find_env(char *arg)
 		i++;
 	}
 	line = ft_strdup("");
+	free(arg);
 	return (line);
 }

@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 18:40:14 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/10 16:31:06 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/12 22:36:20 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	env_founder(char *envp, char *name)
 		return (0);
 }
 
-int	ft_path_founder(char **envp, char *name, int len)
+int	ft_path_founder(char **envp, char *name)
 {
 	int	i;
 
@@ -49,6 +49,34 @@ int	ft_path_founder(char **envp, char *name, int len)
 	return (-1);
 }
 
+void	*ft_del_expath(int i)
+{
+	int		c;
+	int		j;
+	int		x;
+	char	**tmp;
+
+	c = 0;
+	j = 0;
+	x = ft_env_counter();
+	tmp = (char **)malloc(sizeof(char *) * (x));
+	while (g_data.ex_path[j])
+	{
+		if (j == i)
+		{
+			free(g_data.ex_path[j]);
+			j++;
+		}
+		tmp[c] = g_data.ex_path[j];
+		c++;
+		j++;
+	}
+	tmp[c] = NULL;
+	free(g_data.ex_path);
+	g_data.ex_path = tmp;
+	return (NULL);
+}
+
 void	ft_unset(void)
 {
 	int		i;
@@ -58,12 +86,21 @@ void	ft_unset(void)
 	j = 1;
 	if (g_data.command[j] == NULL)
 		return ;
-	env_c = ft_env_counter();
 	while (g_data.command[j])
 	{
-		i = ft_path_founder(g_data.envp, g_data.command[j], env_c);
+		i = ft_path_founder(g_data.envp, g_data.command[j]);
 		if (i != -1)
-			ft_delenv(i, env_c);
+			ft_delenv(i);
+		j++;
+	}
+	j = 1;
+	if (g_data.command[j] == NULL)
+		return ;
+	while (g_data.command[j])
+	{
+		i = ft_path_founder(g_data.ex_path, g_data.command[j]);
+		if (i != -1)
+			ft_del_expath(i);
 		j++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:30:35 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/11 13:33:53 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/12 21:24:51 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ typedef struct s_data
 	char			**dollar_line;
 }	t_data;
 
-
 t_data	g_data;
 
 void	start(void);
@@ -60,7 +59,7 @@ void	execute(void);
 int		ft_strcmp(char *s1, char *s2);
 
 char	**ft_addenv(int j);
-void	*ft_delenv(int i, int env_c);
+void	*ft_delenv(int i);
 void	*ft_getenv(char *name, char **args);
 
 void	ft_cd(void);

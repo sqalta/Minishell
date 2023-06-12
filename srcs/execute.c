@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:28:23 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/10 19:12:38 by spalta           ###   ########.fr       */
+/*   Updated: 2023/06/12 21:37:07 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	check_way(void)
 	int		status;
 
 	status = 0;
+	dup2(g_data.here_fd, 0);
 	if (g_data.redirection != NULL)
 		exec_redir(status);
 	if (ft_strcmp(g_data.command[0], "export"))
@@ -39,6 +40,7 @@ void	check_way(void)
 void	execute(void)
 {
 	int	status;
+	int res;
 
 	ft_command_line();
 	if (builtin() == -1)
@@ -48,5 +50,7 @@ void	execute(void)
 	if (status == 0)
 		check_way();
 	else
-		waitpid(status, NULL, 0);
+		waitpid(status, &g_data.exit_status, 0);
+	if (WIFEXITED(g_data.exit_status))
+		g_data.exit_status = WEXITSTATUS(g_data.exit_status);
 }

@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 01:40:23 by mustafakara       #+#    #+#             */
-/*   Updated: 2023/06/11 14:08:43 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/12 21:37:14 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,8 +153,10 @@ void	initialize_fork(void)
 	}
 	while (i <= g_data.pipe_c)
 	{
-		waitpid(g_data.pipe_id[i], 0, 0);
+		waitpid(g_data.pipe_id[i], &g_data.exit_status, 0);
 		i++;
+		if (WIFEXITED(g_data.exit_status))
+			g_data.exit_status = WEXITSTATUS(g_data.exit_status);
 	}
 	free(g_data.pipe_id);
 	i = 0;

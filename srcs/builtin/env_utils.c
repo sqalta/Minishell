@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 21:05:32 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/11 14:12:27 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/12 22:36:26 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	**ft_addenv(int j)
 	return (tmp);
 }
 
-void	*ft_delenv(int i, int env_c)
+void	*ft_delenv(int i)
 {
 	int		c;
 	int		j;

@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 18:41:07 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/12 16:59:45 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/12 21:15:18 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,25 +49,20 @@ int	ft_env_controller(int j)
 	return (0);
 }
 
-void	ft_export(void)
+void	ft_free_ex_path(void)
 {
-	int	j;
+	int	i;
 
-	j = 1;
-	while (g_data.command[j])
+	i = 0;
+	while (g_data.ex_path[i])
 	{
-		if (ft_env_controller(j) == 1)
-		{
-			ft_put_env_export(j);
-
-		}
-		else
-			ft_addenv(j);
-		j++;
-	}	
+		free(g_data.ex_path[i]);
+		i++;
+	}
+	free(g_data.ex_path);
 }
 
-void	ft_free_path(void)
+void	ft_free_env_path(void)
 {
 	int	i;
 
@@ -78,47 +73,68 @@ void	ft_free_path(void)
 		i++;
 	}
 	free(g_data.envp);
-	i = 0;
-	while (g_data.ex_path[i])
-	{
-		free(g_data.ex_path[i]);
-		i++;
-	}
-	free(g_data.ex_path);
 }
 
-void	ft_put_env_export(int j) 
+void	ft_put_env(int j)
 {
 	int		i;
 	char	*force;
-	char	*force2;
 	char	**temp;
-	char	**temp_expath;
 	int		count;
 
 	i = 0;
 	count = ft_env_counter();
 	force = ft_strdup(g_data.command[j]);
-	force2 = ft_strdup(g_data.command[j]);
 	temp = malloc(sizeof(char *) * (count + 2));
-	temp_expath = malloc(sizeof(char *) * (count + 2));
 	while (g_data.envp[i])
 	{
 		temp[i] = ft_strdup(g_data.envp[i]);
-		temp_expath[i] = ft_strdup(g_data.envp[i]);
 		i++;
 	}
 	temp[i] = force;
-	temp_expath[i] = force2;
 	i++;
 	temp[i] = NULL;
-	temp_expath[i] = NULL;
-	ft_free_path();
+	ft_free_env_path();
 	g_data.envp = temp;
-	g_data.ex_path = temp_expath;
 }
 
-void	ft_put_export(void)
+void	ft_put_export(int j)
 {
+	int		i;
+	char	*force;
+	char	**temp;
+	int		count;
 
+	i = 0;
+	count = ft_env_counter();
+	force = ft_strdup(g_data.command[j]);
+	temp = malloc(sizeof(char *) * (count + 2));
+	while (g_data.ex_path[i])
+	{
+		temp[i] = ft_strdup(g_data.ex_path[i]);
+		i++;
+	}
+	temp[i] = force;
+	i++;
+	temp[i] = NULL;
+	ft_free_ex_path();
+	g_data.ex_path = temp;
+}
+
+void	ft_export(void)
+{
+	int	j;
+
+	j = 1;
+	while (g_data.command[j])
+	{
+		if (ft_env_controller(j) == 1)
+		{
+			ft_put_env(j);
+			ft_put_export(j);
+		}
+		else
+			ft_addenv(j);
+		j++;
+	}	
 }
