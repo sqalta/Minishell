@@ -3,27 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_find_env.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:27:33 by mustafakara       #+#    #+#             */
-/*   Updated: 2023/06/10 18:42:44 by spalta           ###   ########.fr       */
+/*   Updated: 2023/06/12 16:47:19 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-char	*line_connect(t_arg *list)
+int	ft_equal_finder(char *s1, char *s2)
+{
+	while (*s1 && *s2 && (*s1 == *s2))
+	{
+		s1++;
+		s2++;
+	}
+	if (*s1 == '\0' && *s2 == '=')
+		return (1);
+	else
+		return (0);
+}
+
+char	*line_connect(char *arg)
 {
 	int		i;
 	int		j;
 	char	*line;
 
 	i = 0;
-	j = 1;
-	line = malloc(sizeof(char) * (ft_strlen(list->arg)));
-	while (list->arg[j])
+	j = 0;
+	line = malloc(sizeof(char) * (ft_strlen(arg)));
+	while (arg[j])
 	{
-		line[i] = list->arg[j];
+		line[i] = arg[j];
 		i++;
 		j++;
 	}
@@ -39,14 +52,15 @@ char	*ft_find_env(char *arg)
 	char	*ret;
 
 	i = 0;
-	line = line_connect(g_data.list);
+	line = line_connect(arg);
 	len = ft_strlen(line);
 	free(line);
 	while (g_data.envp[i])
 	{
-		if (ft_strncmp(line, g_data.envp[i], ft_strlen(line)) == 0)
+		if (ft_equal_finder(line, g_data.envp[i]) == 1)
 		{
 			ret = ft_strdup(g_data.envp[i] + len + 1);
+			free(arg);
 			return (ret);
 		}
 		i++;

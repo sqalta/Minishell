@@ -1,7 +1,5 @@
-Dollar'ı doğru düzgün parsla
+dollar'da yanlış path gelince leaks oluyor.
 
 Sinyalleri ekle
 
 Heredoc input bağlantısını yap
-
-export a=$b seg veriyor

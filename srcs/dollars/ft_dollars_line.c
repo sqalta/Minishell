@@ -3,34 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   ft_dollars_line.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 17:46:34 by mustafakara       #+#    #+#             */
-/*   Updated: 2023/06/10 19:02:03 by spalta           ###   ########.fr       */
+/*   Updated: 2023/06/12 16:47:23 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
+char	*found_array(int start, int end, char *str)
+{
+	char	*temp;
+	int		i;
+
+	i = 0;
+	temp = malloc(sizeof(char) * (end - start + 1));
+	while (start < end)
+	{
+		temp[i] = str[start];
+		i++;
+		start++;
+	}
+	temp[i] = '\0';
+	return (temp);
+}
+
 void	ft_parse_dollars(void)
 {
-	int	i;
+	char	*line;
+	char	*line2;
+	char	*line3;
+	int		i;
+	int		j;
 
-	if (g_data.list->arg[1] == '0')
-	{
-		free(g_data.list->arg);
-		g_data.list->arg = ft_strdup("minishell");
-	}
-	else if (g_data.list->arg[1] == '?')
-	{
-		free(g_data.list->arg);
-		g_data.list->arg = ft_strdup(ft_itoa(g_data.exit_status));
-	}
-	else
-	{
-		free(g_data.list->arg);
-		g_data.list->arg = ft_find_env(g_data.list->arg);
-	}
+	i = 0;
+	while (g_data.list->arg[i] != '$')
+		i++;
+	line = found_array(0, i, g_data.list->arg);
+	i++;
+	j = i;
+	while (ft_isalnum(g_data.list->arg[i]) || ft_isalpha(g_data.list->arg[i]))
+		i++;
+	line2 = found_array(j, i, g_data.list->arg);
+	line2 = ft_find_env(line2);
+	line3 = ft_strjoin(line, line2);
+	free(line);
+	free(line2);
+	free(g_data.list->arg);
+	g_data.list->arg = line3;
 }
 
 void	ft_dollars_line(void)
@@ -41,10 +62,7 @@ void	ft_dollars_line(void)
 	while (g_data.list)
 	{
 		if (g_data.list->type == DOLLAR)
-		{
-			g_data.list->type = WORD;
 			ft_parse_dollars();
-		}
 		g_data.list = g_data.list->next;
 	}
 	g_data.list = temp_s;

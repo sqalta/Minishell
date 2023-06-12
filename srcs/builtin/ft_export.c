@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 18:41:07 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/10 18:27:02 by spalta           ###   ########.fr       */
+/*   Updated: 2023/06/12 16:59:45 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,47 +57,68 @@ void	ft_export(void)
 	while (g_data.command[j])
 	{
 		if (ft_env_controller(j) == 1)
+		{
 			ft_put_env_export(j);
+
+		}
 		else
 			ft_addenv(j);
 		j++;
 	}	
 }
-void	free_expath_envp()
+
+void	ft_free_path(void)
 {
 	int	i;
 
 	i = 0;
 	while (g_data.envp[i])
-		free(g_data.envp[i++]);
+	{
+		free(g_data.envp[i]);
+		i++;
+	}
 	free(g_data.envp);
 	i = 0;
 	while (g_data.ex_path[i])
-		free(g_data.ex_path[i++]);
+	{
+		free(g_data.ex_path[i]);
+		i++;
+	}
 	free(g_data.ex_path);
 }
 
-void	ft_put_env_export(int j)
+void	ft_put_env_export(int j) 
 {
 	int		i;
 	char	*force;
+	char	*force2;
 	char	**temp;
+	char	**temp_expath;
 	int		count;
 
 	i = 0;
 	count = ft_env_counter();
-	force = ft_strjoin(g_data.command[j], "\0");
+	force = ft_strdup(g_data.command[j]);
+	force2 = ft_strdup(g_data.command[j]);
 	temp = malloc(sizeof(char *) * (count + 2));
+	temp_expath = malloc(sizeof(char *) * (count + 2));
 	while (g_data.envp[i])
 	{
-		if (i == 0)
-			temp[i] = force;
-		else
-			temp[i] = ft_strdup(g_data.envp[i - 1]);
+		temp[i] = ft_strdup(g_data.envp[i]);
+		temp_expath[i] = ft_strdup(g_data.envp[i]);
 		i++;
 	}
+	temp[i] = force;
+	temp_expath[i] = force2;
+	i++;
 	temp[i] = NULL;
-	free_expath_envp();
+	temp_expath[i] = NULL;
+	ft_free_path();
 	g_data.envp = temp;
-	g_data.ex_path = g_data.envp;
+	g_data.ex_path = temp_expath;
+}
+
+void	ft_put_export(void)
+{
+
 }
