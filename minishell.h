@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:30:35 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/12 21:24:51 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/13 14:33:28 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,6 @@ void	execute(void);
 
 int		ft_strcmp(char *s1, char *s2);
 
-char	**ft_addenv(int j);
-void	*ft_delenv(int i);
-void	*ft_getenv(char *name, char **args);
-
 void	ft_cd(void);
 void	ft_pwd(void);
 void	ft_env(void);
@@ -83,16 +79,18 @@ int		pipe_counter(void);
 void	create_tubes(void);
 
 void	ft_heredoc_line(void);
-
 void	ft_dollars_line(void);
-char	*ft_find_env(char *arg);
 
 void	ft_exit(t_arg *data);
 void	ft_free_all(void);
-void	*ft_export_path(void);
-
-int		ft_env_counter(void);
-void	ft_put_env_export(int j);
 void	ft_sig_handler(int sig);
+
+void	*ft_export_path(void);
+void	ft_export(void);
+void	ft_delenv(char **envp, int j);
+void	ft_addenv(char **envp, int j);
+int		env_counter(char **envp);
+
+char	*ft_find_env(char *arg);
 
 #endif
