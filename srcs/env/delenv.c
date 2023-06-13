@@ -6,7 +6,7 @@
 /*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 14:13:16 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/13 16:09:48 by spalta           ###   ########.fr       */
+/*   Updated: 2023/06/13 17:29:21 by spalta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,18 @@ void	ft_delenv(char **envp, int j, int flag)
 		{
 			free(envp[i]);
 			i++;
-			continue;
 		}
-		new_envp[k] = envp[i];
-		i++;
-		k++;
+		else
+		{
+			new_envp[k] = envp[i];
+			i++;
+			k++;
+		}
 	}
-	new_envp[i] = NULL;
-	free(envp);
+	new_envp[k] = NULL;
 	if (!flag)
 		g_data.envp = new_envp;
 	else
 		g_data.ex_path = new_envp;
+	free(envp);
 }

@@ -6,7 +6,7 @@
 /*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 14:09:02 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/13 15:51:29 by spalta           ###   ########.fr       */
+/*   Updated: 2023/06/13 17:46:16 by spalta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	ft_addenv(char **envp, int j, int flag)
 	int		i;
 	char	*force;
 	char	**new_envp;
+	int		a;
 
 	i = 0;
 	force = ft_strdup(g_data.command[j]);
@@ -29,9 +30,9 @@ void	ft_addenv(char **envp, int j, int flag)
 	}
 	new_envp[i] = force;
 	new_envp[i + 1] = NULL;
-	free(envp);
 	if (!flag)
 		g_data.envp = new_envp;
 	else
 		g_data.ex_path = new_envp;
+	free(envp);
 }

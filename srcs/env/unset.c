@@ -6,7 +6,7 @@
 /*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 14:27:53 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/13 15:57:31 by spalta           ###   ########.fr       */
+/*   Updated: 2023/06/13 17:42:55 by spalta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	env_founder(char *envp, char *name)
 	i = 0;
 	while (envp[i] == name[i])
 		i++;
-	if (envp[i] == '=')
+	if (envp[i] == '=' || envp[i] == '\0')
 		return (1);
 	else
 		return (0);
@@ -43,6 +43,7 @@ void	ft_unset(void)
 {
 	int	i;
 	int	j;
+	int	l;
 	int	env_c;
 
 	j = 1;
@@ -51,11 +52,13 @@ void	ft_unset(void)
 	while (g_data.command[j])
 	{
 		i = ft_path_founder(g_data.envp, g_data.command[j]);
+		l = ft_path_founder(g_data.ex_path, g_data.command[j]);
+		getchar();
+		printf ("i=%d\nl=%d\n", i, l);
 		if (i != -1)
-		{
 			ft_delenv(g_data.envp, i, 0);
-			ft_delenv(g_data.ex_path, i, 1);
-		}
+		if (l != -1)
+			ft_delenv(g_data.ex_path, l, 1);
 		j++;
 	}
 }
