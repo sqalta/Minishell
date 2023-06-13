@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: spalta <spalta@student.42.fr>              +#+  +:+       +#+         #
+#    By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/26 18:58:37 by mkarakul          #+#    #+#              #
-#    Updated: 2023/06/13 16:43:53 by spalta           ###   ########.fr        #
+#    Updated: 2023/06/13 18:35:09 by mkarakul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRC = srcs/utils/ft_strcmp.c srcs/minishell.c \
 	srcs/redir/exec_redir.c srcs/pipe/exec_pipe.c srcs/pipe/ft_pipe.c \
 	srcs/heredoc/exec_heredoc.c srcs/error_msg.c srcs/dollars/ft_dollars_line.c \
 	srcs/dollars/ft_find_env.c srcs/ft_exit.c srcs/ft_free.c srcs/ft_sig_handler.c \
-	srcs/env/addenv.c srcs/env/delenv.c srcs/env/env_utils.c
+	srcs/env/addenv.c srcs/env/delenv.c srcs/env/env_utils.c srcs/env/upenv.c
 
 CC = gcc -g #-fsanitize=address
 FLAG = -lreadline -o $(NAME)

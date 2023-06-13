@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 14:16:00 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/13 17:33:34 by spalta           ###   ########.fr       */
+/*   Updated: 2023/06/13 19:41:07 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,15 @@ void	ft_export(void)
 	{
 		if (ft_env_controller(j) == 1)
 		{
-			ft_addenv(g_data.envp, j, 0);
-			ft_addenv(g_data.ex_path, j, 1);
+			if (ft_path_founder(g_data.ex_path, g_data.command[j]) != -1)
+				upenv(g_data.ex_path, j, 1);
+			if (ft_path_founder(g_data.envp, g_data.command[j]) != -1)
+				upenv(g_data.envp, j, 1);
+			else
+			{
+				ft_addenv(g_data.envp, j, 0);
+				ft_addenv(g_data.ex_path, j, 1);
+			}
 		}
 		else
 			ft_addenv(g_data.ex_path, j, 1);

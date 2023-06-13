@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 14:27:53 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/13 17:42:55 by spalta           ###   ########.fr       */
+/*   Updated: 2023/06/13 18:35:58 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	env_founder(char *envp, char *name)
+int	env_founder(char *envp, char *name, int len)
 {
 	int	i;
 
 	i = 0;
-	while (envp[i] == name[i])
+	while (envp[i] == name[i] && i <= len)
 		i++;
 	if (envp[i] == '=' || envp[i] == '\0')
 		return (1);
@@ -32,7 +32,7 @@ int	ft_path_founder(char **envp, char *name)
 	i = 0;
 	while (envp[i])
 	{
-		if (env_founder(envp[i], name) == 1)
+		if (env_founder(envp[i], name, ft_strlen(name)) == 1)
 			return (i);
 		i++;
 	}
@@ -53,8 +53,6 @@ void	ft_unset(void)
 	{
 		i = ft_path_founder(g_data.envp, g_data.command[j]);
 		l = ft_path_founder(g_data.ex_path, g_data.command[j]);
-		getchar();
-		printf ("i=%d\nl=%d\n", i, l);
 		if (i != -1)
 			ft_delenv(g_data.envp, i, 0);
 		if (l != -1)

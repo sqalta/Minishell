@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:30:35 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/13 17:44:14 by spalta           ###   ########.fr       */
+/*   Updated: 2023/06/13 18:34:50 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,7 @@ void	ft_addenv(char **envp, int j, int flag);
 int		env_counter(char **envp);
 
 char	*ft_find_env(char *arg);
-int	ft_path_founder(char **envp, char *name);
+int		ft_path_founder(char **envp, char *name);
+void	upenv(char **envp, int j, int flag);
+
 #endif
