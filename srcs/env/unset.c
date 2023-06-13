@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 14:27:53 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/13 14:33:00 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/13 15:57:31 by spalta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void	ft_unset(void)
 		i = ft_path_founder(g_data.envp, g_data.command[j]);
 		if (i != -1)
 		{
-			ft_delenv(g_data.envp, i);
-			ft_delenv(g_data.ex_path, i);
+			ft_delenv(g_data.envp, i, 0);
+			ft_delenv(g_data.ex_path, i, 1);
 		}
 		j++;
 	}
