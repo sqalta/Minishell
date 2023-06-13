@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   addenv.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 14:09:02 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/13 14:44:41 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/13 15:51:29 by spalta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	ft_addenv(char **envp, int j)
+void	ft_addenv(char **envp, int j, int flag)
 {
 	int		i;
 	char	*force;
@@ -27,8 +27,11 @@ void	ft_addenv(char **envp, int j)
 		free(envp[i]);
 		i++;
 	}
-	new_envp[i] = ft_strdup(force);
+	new_envp[i] = force;
 	new_envp[i + 1] = NULL;
 	free(envp);
-	envp = new_envp;
+	if (!flag)
+		g_data.envp = new_envp;
+	else
+		g_data.ex_path = new_envp;
 }

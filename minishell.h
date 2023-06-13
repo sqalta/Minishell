@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:30:35 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/13 14:33:28 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/13 15:49:03 by spalta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	ft_sig_handler(int sig);
 void	*ft_export_path(void);
 void	ft_export(void);
 void	ft_delenv(char **envp, int j);
-void	ft_addenv(char **envp, int j);
+void	ft_addenv(char **envp, int j, int flag);
 int		env_counter(char **envp);
 
 char	*ft_find_env(char *arg);
