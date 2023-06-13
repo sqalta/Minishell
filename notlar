@@ -1,5 +1,3 @@
-dollar'da yanlış path gelince leaks oluyor.
-
 Sinyalleri ekle
 
 Heredoc input bağlantısını yap
