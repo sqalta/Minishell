@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:30:35 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/13 18:34:50 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/14 19:23:20 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_data
 	char			**heredoc;
 	char			**command;
 	char			**redirection;
-
+	int				signal_status;
 	int				**all_pipe_fd;
 	int				fd;
 	int				pipe_c;

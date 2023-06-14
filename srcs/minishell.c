@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:59:02 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/14 17:23:04 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/14 21:42:30 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	ft_struct_initilaize(char **envp, int flag)
 		g_data.ex_path = create_cpy_env(envp);
 		g_data.envp = create_cpy_env(envp);
 	}
+	g_data.signal_status = 0;
 	g_data.list = NULL;
 	g_data.command = NULL;
 	g_data.redirection = NULL;
@@ -80,9 +81,7 @@ void	start(void)
 	while (1)
 	{
 		ft_struct_initilaize(g_data.envp, 0);
-		signal(SIGINT, ft_sig_handler);
-		signal(SIGQUIT, ft_sig_handler);
-		g_data.line = readline("minishell-$ ");
+		g_data.line = readline("minishell-$");
 		ft_parse();
 		if (g_data.count_type->dollar > 0)
 			ft_dollars_line();
@@ -118,6 +117,8 @@ int	main(int ac, char **av, char **envp)
 		exit(127);
 	}
 	av = NULL;
+	signal(SIGINT, ft_sig_handler);
+	signal(SIGQUIT, ft_sig_handler);
 	g_data.exit_status = 0;
 	ft_struct_initilaize(envp, 1);
 	start();

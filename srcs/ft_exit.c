@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 03:53:07 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/06 19:28:37 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/14 22:04:59 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ void	ft_exit(t_arg *data)
 	{
 		ft_putstr_fd("exit\n", 1);
 		printf("minishell: exit: too many arguments\n");
+		g_data.exit_status = 1;
 	}
 }

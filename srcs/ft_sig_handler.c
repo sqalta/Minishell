@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 18:30:37 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/09 10:15:46 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/14 21:41:11 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void	ft_sig_handler(int sig)
 {
 	if (sig == SIGINT)
 	{
-		ft_putstr_fd("\n", 1);
-		//rl_on_new_line();
-		//rl_replace_line("", 0);
-		//rl_redisplay();
+		(void)sig;
+		g_data.signal_status = -1;
+		g_data.exit_status = 1;
+		ioctl(STDIN_FILENO, TIOCSTI, "\n");
 	}
 	if (sig == SIGQUIT)
 	{
