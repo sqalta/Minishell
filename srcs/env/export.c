@@ -6,11 +6,30 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 14:16:00 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/14 16:51:02 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/14 17:35:50 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+int	name_error(int j)
+{
+	int	i;
+
+	i = 0;
+	if (ft_isdigit(g_data.command[j][i]) == 1)
+		return (-1);
+	while (g_data.command[j][i])
+	{
+		if (g_data.command[j][i] == '=')
+			return (0);
+		if (ft_isalnum(g_data.command[j][i]) == 0
+			&& g_data.command[j][i] != '_')
+			return (-1);
+		i++;
+	}
+	return (0);
+}
 
 void	*ft_export_path(void)
 {
@@ -60,6 +79,11 @@ void	ft_export(void)
 	j = 1;
 	while (g_data.command[j])
 	{
+		if (name_error(j) == -1)
+		{
+			printf ("minishell: export: %s : not a valid identifier\n", g_data.command[j++]);
+			continue ;
+		}
 		line = ft_path_founder(g_data.envp, g_data.command[j]);
 		line_exp = ft_path_founder(g_data.ex_path, g_data.command[j]);
 		if (line != -1)
