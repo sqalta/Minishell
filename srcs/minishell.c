@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:59:02 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/14 22:08:51 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/14 22:14:46 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,8 @@ int	main(int ac, char **av, char **envp)
 	}
 	av = NULL;
 	signal(SIGINT, ft_sig_handler);
-	g_data.exit_status = 0;
+	signal(SIGQUIT, ft_sig_handler);
+	g_data.exit_status = 1;
 	ft_struct_initilaize(envp, 1);
 	start();
 	return (0);

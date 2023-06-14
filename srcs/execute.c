@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:28:23 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/13 15:23:57 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/14 22:15:33 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ void	execute(void)
 {
 	int	status;
 	int	res;
+	int	i;
 
+	i = 0;
 	ft_command_line();
 	if (builtin() == -1)
 		status = fork();
@@ -51,6 +53,9 @@ void	execute(void)
 		check_way();
 	else
 		waitpid(status, &g_data.exit_status, 0);
-	if (WIFEXITED(g_data.exit_status))
+	if (WIFEXITED(g_data.exit_status) && i == 0)
+	{
 		g_data.exit_status = WEXITSTATUS(g_data.exit_status);
+		i++;
+	}
 }
