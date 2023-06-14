@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:59:02 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/14 21:42:30 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/14 22:08:51 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,11 @@ void	start(void)
 	{
 		ft_struct_initilaize(g_data.envp, 0);
 		g_data.line = readline("minishell-$");
+		if (!g_data.line)
+		{
+			ft_putstr_fd("exit\n", 2);
+			exit(1);
+		}
 		ft_parse();
 		if (g_data.count_type->dollar > 0)
 			ft_dollars_line();
@@ -118,7 +123,6 @@ int	main(int ac, char **av, char **envp)
 	}
 	av = NULL;
 	signal(SIGINT, ft_sig_handler);
-	signal(SIGQUIT, ft_sig_handler);
 	g_data.exit_status = 0;
 	ft_struct_initilaize(envp, 1);
 	start();

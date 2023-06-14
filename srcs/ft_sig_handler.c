@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 18:30:37 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/14 21:41:11 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/14 22:06:10 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ void	ft_sig_handler(int sig)
 	}
 	if (sig == SIGQUIT)
 	{
-		ft_putstr_fd("\b\b  \b\b", 1);
+		printf("ANAM\n");
 	}
 }
