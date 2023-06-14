@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 14:27:53 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/13 18:35:58 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/14 16:58:06 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,26 @@ int	env_founder(char *envp, char *name, int len)
 	int	i;
 
 	i = 0;
-	while (envp[i] == name[i] && i <= len)
+	while (envp[i] == name[i] && i < len)
 		i++;
 	if (envp[i] == '=' || envp[i] == '\0')
 		return (1);
 	else
 		return (0);
+}
+
+int	ft_path_counter(char *name)
+{
+	int	i;
+
+	i = 0;
+	while (name[i])
+	{
+		if (name[i] == '=')
+			return (i);
+		i++;
+	}
+	return (i);
 }
 
 int	ft_path_founder(char **envp, char *name)
@@ -32,7 +46,7 @@ int	ft_path_founder(char **envp, char *name)
 	i = 0;
 	while (envp[i])
 	{
-		if (env_founder(envp[i], name, ft_strlen(name)) == 1)
+		if (env_founder(envp[i], name, ft_path_counter(name)) == 1)
 			return (i);
 		i++;
 	}

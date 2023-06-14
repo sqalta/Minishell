@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:59:02 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/11 13:25:10 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/14 17:11:16 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	ft_struct_initilaize(char **envp, int flag)
 		g_data.ex_path = create_cpy_env(envp);
 		g_data.envp = create_cpy_env(envp);
 	}
-	g_data.exit_status = 0;
 	g_data.list = NULL;
 	g_data.command = NULL;
 	g_data.redirection = NULL;
@@ -119,6 +118,7 @@ int	main(int ac, char **av, char **envp)
 		exit(127);
 	}
 	av = NULL;
+	g_data.exit_status = 0;
 	ft_struct_initilaize(envp, 1);
 	start();
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 14:16:00 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/13 19:41:07 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/14 16:51:02 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,23 +52,23 @@ int	ft_env_controller(int j)
 void	ft_export(void)
 {
 	int	j;
+	int	line;
+	int	line_exp;
 
+	line = 0;
+	line_exp = 0;
 	j = 1;
 	while (g_data.command[j])
 	{
-		if (ft_env_controller(j) == 1)
-		{
-			if (ft_path_founder(g_data.ex_path, g_data.command[j]) != -1)
-				upenv(g_data.ex_path, j, 1);
-			if (ft_path_founder(g_data.envp, g_data.command[j]) != -1)
-				upenv(g_data.envp, j, 1);
-			else
-			{
-				ft_addenv(g_data.envp, j, 0);
-				ft_addenv(g_data.ex_path, j, 1);
-			}
-		}
-		else
+		line = ft_path_founder(g_data.envp, g_data.command[j]);
+		line_exp = ft_path_founder(g_data.ex_path, g_data.command[j]);
+		if (line != -1)
+			upenv(g_data.envp, j, 0);
+		if (line_exp != -1)
+			upenv(g_data.ex_path, j, 1);
+		if (line == -1 && ft_env_controller(j))
+			ft_addenv(g_data.envp, j, 0);
+		if (line_exp == -1)
 			ft_addenv(g_data.ex_path, j, 1);
 		j++;
 	}

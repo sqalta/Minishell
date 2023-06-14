@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 17:46:34 by mustafakara       #+#    #+#             */
-/*   Updated: 2023/06/12 22:29:02 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/14 17:11:34 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_parse_dollars(void)
 	int		j;
 
 	i = 0;
-	if (g_data.list->arg[0] == '?' && g_data.list->arg[0] == '\0')
+	if (g_data.list->arg[0] == '$' && g_data.list->arg[1] == '?')
 	{
 		free(g_data.list->arg);
 		g_data.list->arg = ft_itoa(g_data.exit_status);
