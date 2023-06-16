@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:59:02 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/16 13:40:09 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/16 13:47:44 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,9 @@ void	start(void)
 		}
 		if (!g_data.line)
 		{
-			ft_putstr_fd("exit\n", 2);
-			exit(1);
+			write(1, "\033[2D", 4);
+			write(1, "\033[0mexit\n", 9);
+			exit(0);
 		}
 		ft_parse();
 		if (g_data.count_type->dollar > 0)
