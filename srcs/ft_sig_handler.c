@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 18:30:37 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/14 22:06:10 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/16 13:40:12 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,8 @@ void	ft_sig_handler(int sig)
 		(void)sig;
 		g_data.signal_status = -1;
 		g_data.exit_status = 1;
+		g_data.sig_flag = 1;
+		write(1, "\033[A", 3);
 		ioctl(STDIN_FILENO, TIOCSTI, "\n");
-	}
-	if (sig == SIGQUIT)
-	{
-		printf("ANAM\n");
 	}
 }
