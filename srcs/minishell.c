@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:59:02 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/16 13:47:44 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/16 14:41:01 by spalta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	ft_struct_initilaize(char **envp, int flag)
 	g_data.heredoc = NULL;
 	g_data.line = NULL;
 	g_data.sig_flag = 0;
+	g_data.error_flag = 0;
 }
 
 void	start(void)
@@ -95,8 +96,6 @@ void	start(void)
 			exit(0);
 		}
 		ft_parse();
-		if (g_data.count_type->dollar > 0)
-			ft_dollars_line();
 		temp = g_data.list;
 		add_history(g_data.line);
 		free(g_data.line);
@@ -106,6 +105,8 @@ void	start(void)
 			freeliazer(tmp, temp);
 			continue ;
 		}
+		if (g_data.count_type->dollar > 0)
+			ft_dollars_line();
 		if (g_data.count_type->heredoc > 0)
 			ft_heredoc_line();
 		if (ft_strcmp(g_data.list->arg, "exit"))

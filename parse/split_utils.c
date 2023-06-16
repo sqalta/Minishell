@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: serif <serif@student.42.fr>                +#+  +:+       +#+        */
+/*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 20:46:10 by serif             #+#    #+#             */
-/*   Updated: 2023/06/05 17:07:40 by serif            ###   ########.fr       */
+/*   Updated: 2023/06/16 14:08:15 by spalta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ int check_quotation(char *s)
 		i++;
 	}
 	if (len % 2)
-		exit(1); //EXİT DEĞİŞTİR !!!
+	{
+		g_data.error_flag = -1; //EXİT DEĞİŞTİR !!!
+		return (-1);
+	}
 	else
 		return (len);
 }

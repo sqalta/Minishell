@@ -70,6 +70,8 @@ void split_by_space(char *s, t_arg **line)
 	t_arg	*line_f;
 
 	l_quotation = check_quotation(s);
+	if (g_data.error_flag == -1)
+		return;
 	s = ft_strtrim(s, " ");
 	split_line(s, *line);
 	line_f = *line;

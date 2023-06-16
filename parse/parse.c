@@ -6,7 +6,7 @@
 /*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 19:20:57 by spalta            #+#    #+#             */
-/*   Updated: 2023/06/09 19:07:28 by spalta           ###   ########.fr       */
+/*   Updated: 2023/06/16 14:59:35 by spalta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,17 @@ void	print_list(t_arg *lst)
 	printf ("%s\n", lst->arg);
 }
 
-void	tokenizer(t_arg **prompt)
+int	tokenizer(t_arg **prompt)
 {
-	split_by_space(g_data.line, prompt); // tek tırnak çift tırnak içi kontrolünü tekrar yap!
+	split_by_space(g_data.line, prompt);
+	if (g_data.error_flag)
+	{
+		g_data.list = *prompt;
+		return (0);	 // tek tırnak çift tırnak içi kontrolünü tekrar yap!
+	}
 	split_by_redirection(prompt);
 	split_by_pipe(prompt);
+	return (1);
 }
 
 void	type_counter(t_arg	**prompt)
@@ -56,8 +62,10 @@ int	ft_parse(void)
 	t_arg	*line;
 
 	line = ft_calloc(1, sizeof(t_arg));
-	tokenizer(&line);
-	identify_token(&line);
+	if (!tokenizer(&line))
+		return (-1);
+	if (!identify_token(&line))
+		return (-1);
 	quot_cleaner(&line);
 	g_data.list = line;
 	type_counter(&line);

@@ -6,11 +6,12 @@
 /*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:35:14 by serif             #+#    #+#             */
-/*   Updated: 2023/06/10 19:06:25 by spalta           ###   ########.fr       */
+/*   Updated: 2023/06/16 14:55:58 by spalta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parse/parse.h"
+#include "../minishell.h"
 
 int	contains_dollars(char *s)
 {
@@ -47,8 +48,8 @@ int	initilaze_metacharacter(t_arg	*node)
 			node->type = DOUBLE_OUTPUT_RDR;
 		else
 		{
-			printf ("redirection error >< ?\n");
-			exit (1);
+			g_data.error_flag = -2;
+			return (-2);
 		}
 	}
 	return (0);
@@ -64,10 +65,18 @@ int	identify_token(t_arg	**prompt)
 		if (contains_dollars(iter->arg))
 			iter->type = DOLLAR;
 		else if (is_redirection(iter->arg) || is_pipe(iter->arg))
-			initilaze_metacharacter(iter);
+		{
+			if (initilaze_metacharacter(iter) == -2)
+			{
+				g_data.list = *prompt;
+				return (0);
+			}
+		}
 		else
+		{
 			iter->type = WORD;
+		}
 		iter = iter->next;
 	}
-	return (0);
+	return (1);
 }

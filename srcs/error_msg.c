@@ -6,7 +6,7 @@
 /*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 17:49:17 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/10 19:19:09 by spalta           ###   ########.fr       */
+/*   Updated: 2023/06/16 14:41:15 by spalta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ int	error_msg(int flag, t_arg *temp)
 		free(str);
 		return (-1);
 	}
+	else if(flag == 2)
+	{
+		if (g_data.error_flag == -2)
+			printf("minishell: syntax error near unexpected token '%s'\n", "<");
+		return (-1);
+	}
 	else
 		return (0);
 }
@@ -36,6 +42,8 @@ int	error_check(void)
 	t_arg	*temp;
 
 	temp = g_data.list;
+	if (g_data.error_flag)
+		return (error_msg(2, temp));
 	flag = 0;
 	if (!temp)
 		return (-1);
