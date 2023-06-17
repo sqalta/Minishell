@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 14:16:00 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/17 16:49:50 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/14 17:35:50 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ int	name_error(int j)
 	int	i;
 
 	i = 0;
-	if (g_data.command[j][0] == '=')
-		return (-1);
 	if (ft_isdigit(g_data.command[j][i]) == 1)
 		return (-1);
 	while (g_data.command[j][i])
@@ -83,8 +81,7 @@ void	ft_export(void)
 	{
 		if (name_error(j) == -1)
 		{
-			printf ("minishell: export: %s : not a valid identifier\n",
-				g_data.command[j++]);
+			printf ("minishell: export: %s : not a valid identifier\n", g_data.command[j++]);
 			continue ;
 		}
 		line = ft_path_founder(g_data.envp, g_data.command[j]);

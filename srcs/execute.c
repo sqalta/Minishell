@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: serif <serif@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:28:23 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/14 22:15:33 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/18 00:40:27 by serif            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@ void	check_way(void)
 	int		status;
 
 	status = 0;
-	dup2(g_data.here_fd, 0);
+	if (g_data.count_type->heredoc)
+	{
+		dup2(g_data.here_fd[0], STDIN_FILENO);
+		close(g_data.here_fd[0]);
+	}
 	if (g_data.redirection != NULL)
 		exec_redir(status);
 	if (ft_strcmp(g_data.command[0], "export"))

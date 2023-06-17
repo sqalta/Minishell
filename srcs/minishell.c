@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: serif <serif@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:59:02 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/16 18:31:42 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/18 00:34:43 by serif            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,9 @@ void	start(void)
 		if (g_data.count_type->dollar > 0)
 			ft_dollars_line();
 		if (g_data.count_type->heredoc > 0)
+		{
 			ft_heredoc_line();
+		}
 		if (ft_strcmp(g_data.list->arg, "exit"))
 		{
 			ft_exit(g_data.list);
@@ -116,7 +118,7 @@ void	start(void)
 		}
 		if (initialize_pipe() == -1)
 			execute();
-		freeliazer(tmp, temp);
+		//freeliazer(tmp, temp);
 	}
 }
 

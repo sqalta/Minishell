@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: serif <serif@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:30:35 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/16 13:59:59 by spalta           ###   ########.fr       */
+/*   Updated: 2023/06/18 00:11:44 by serif            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,11 @@ typedef struct s_data
 	int				*pipe_id;
 	int				exit_status;
 	char			*here_line;
-	int				here_fd;
+	int				*here_fd;
+	int				*exec_fd;
+	int				here_count;
+	char			*main_here_line;
+	int				main_here_size;
 	char			**dollars;
 	char			**dollar_line;
 	int				sig_flag;
