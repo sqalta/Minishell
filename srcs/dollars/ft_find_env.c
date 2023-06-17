@@ -6,7 +6,7 @@
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 17:59:12 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/17 15:30:26 by mkarakul         ###   ########.fr       */
+/*   Updated: 2023/06/17 16:00:22 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,15 @@ char	*line_connect(char *arg)
 char	*ft_find_env(char *arg)
 {
 	int		i;
+	int		j;
 	int		len;
 	char	*line;
 	char	*ret;
 
 	i = 0;
+	j = 0;
+	while (arg[j] && ft_isalnum(arg[j]))
+		j++;
 	line = line_connect(arg);
 	len = ft_strlen(line);
 	free(line);
@@ -63,6 +67,7 @@ char	*ft_find_env(char *arg)
 		if (ft_equal_finder(line, g_data.envp[i]) == 1)
 		{
 			ret = ft_strdup(g_data.envp[i] + len + 1);
+			ret = ft_strjoin(ret, arg + j);
 			free(arg);
 			return (ret);
 		}
