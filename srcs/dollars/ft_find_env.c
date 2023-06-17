@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 18:27:33 by mustafakara       #+#    #+#             */
-/*   Updated: 2023/06/12 22:27:50 by mkarakul         ###   ########.fr       */
+/*   Created: 2023/06/16 17:59:12 by mkarakul          #+#    #+#             */
+/*   Updated: 2023/06/17 15:30:26 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,11 @@ char	*line_connect(char *arg)
 
 	i = 0;
 	j = 0;
-	line = malloc(sizeof(char) * (ft_strlen(arg)));
-	while (arg[j])
+	while (arg[i] && ft_isalnum(arg[i]))
+		i++;
+	line = malloc(sizeof(char) * i + 1);
+	i = 0;
+	while (arg[j] && ft_isalnum(arg[j]))
 	{
 		line[i] = arg[j];
 		i++;
@@ -55,12 +58,6 @@ char	*ft_find_env(char *arg)
 	line = line_connect(arg);
 	len = ft_strlen(line);
 	free(line);
-	if (arg[0] == '0' && arg[1] == '\0')
-	{
-		ret = ft_strdup("minishell");
-		free(arg);
-		return (ret);
-	}
 	while (g_data.envp[i])
 	{
 		if (ft_equal_finder(line, g_data.envp[i]) == 1)

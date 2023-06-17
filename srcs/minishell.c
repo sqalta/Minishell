@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spalta <spalta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkarakul <mkarakul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:59:02 by mkarakul          #+#    #+#             */
-/*   Updated: 2023/06/16 14:41:01 by spalta           ###   ########.fr       */
+/*   Updated: 2023/06/16 18:31:42 by mkarakul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	start(void)
 	while (1)
 	{
 		ft_struct_initilaize(g_data.envp, 0);
-		g_data.line = readline("minishell-$");
+		g_data.line = readline("minishell-$ ");
 		if (g_data.sig_flag == 1)
 		{
 			free(g_data.line);
